@@ -1,0 +1,46 @@
+.text {
+  margin-left: 6px;
+  font-size: 26px;
+  // font-family: "Proxima Nova Bold" !important;
+  margin-left: 12px;
+  font-weight: 600;
+}
+
+.row {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.right {
+  position: absolute;
+  left: 20%;
+}
+
+.save {
+  display: inline-block;
+  width: 131px;
+  height: 50px;
+  background-color: #1d3c7f !important;
+  color: white !important;
+  font-size: 16px;
+  // font-family: "Proxima";
+  padding: 16px;
+  padding-left: 18px;
+  margin-right: 12px;
+  border: none;
+  margin-top: 7%;
+}
+
+.cancel {
+  display: inline-block;
+  width: 131px;
+  height: 50px;
+  background-color: #f96368 !important;
+  color: white !important;
+  font-size: 16px;
+  // font-family: "Proxima";
+  padding: 16px;
+  padding-left: 18px;
+  border: none;
+  margin-top: 7%;
+}

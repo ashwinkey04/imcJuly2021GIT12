@@ -1,0 +1,73 @@
+<div class="header-container">
+  <div class="logo-container">
+    <!-- old logo <a class="logo" href="#" (click)="navigateHome()"><img src="assets/images/logo.png" style="  margin-bottom: 12px;">
+      <span style="color:white">Bigg Boss</span></a> -->
+
+
+    <a class="logo " href="#" (click)="navigateHome()">
+      <img src="assets/images/its-my-choize-logo.png" style="margin-top: 15px;
+      margin-bottom: 12px;
+      width: 86px;
+      height: 61px;" />
+    </a>
+
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle " style="    margin-left: 24px;">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+  </div>
+  <!-- <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  </nb-select> -->
+  <!-- <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+    <nb-icon icon="menu-2-outline"></nb-icon>
+  </a> -->
+</div>
+
+
+
+<div class="header-container dropdown">
+
+  <!-- EventList DropDown -->
+  <nb-select placeholder="Select Showcase" [(selected)]="selectedItem" style="background-color: inherit !important;">
+    <nb-option value="" *ngFor="let item of eventlist" (selectionChange)="selectionItem(item._id)">{{
+      item.name}}
+    </nb-option>
+
+  </nb-select>
+
+  <!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div> -->
+
+
+  <nb-actions size="small">
+
+    <!-- <nb-action class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action> -->
+
+
+    <!-- <nb-action class="control-item" icon="email-outline"></nb-action> -->
+
+    <nb-action class="control-item"></nb-action>
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']">
+      <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" [name]="user?.name" [picture]="user?.picture"
+        style="color: white;">
+      </nb-user>
+      <!-- <nb-user [nbContextMenu]="userMenu" name="Admin" style="background-color:white">
+      </nb-user> -->
+      <!-- <img style="color: white;" avatar="Admin"> -->
+      <span (click)="clickOnUser()">
+        <i class="fa fa-angle-down  ml-2 mt-1" aria-hidden="true" style="font-size: 16px;"></i>
+      </span>
+    </nb-action>
+  </nb-actions>
+</div>

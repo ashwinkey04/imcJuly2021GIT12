@@ -1,0 +1,255 @@
+<span class="flaticon-dashboard6"></span><span class="title">Dashboard</span>
+
+
+<div class="row">
+    <div class="col .col-sm-4 .col-md-4 .col-lg-4 .col-xl-4">
+        <mat-card class="dashboard-card dashboard-card1">
+            <mat-card-content>
+                <div class="txt">
+                    <span class="flaticon-calendar2"></span>
+                    Total Events Days
+                </div>
+                <div class="txt1"> {{titledata?.remainingDays}}/{{titledata?.totalDays}} </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col col-sm-4 .col-md-4 col-lg-4 col-xl-4">
+        <mat-card class="dashboard-card dashboard-card2">
+            <mat-card-content>
+                <div class="txt">
+                    <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+                    Total Players
+                </div>
+                <div class="txt2"> {{titledata?.total}} </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col col-sm-4 .col-md-4 col-lg-4 col-xl-4">
+        <mat-card class="dashboard-card dashboard-card3">
+            <mat-card-content>
+                <div class="txt">
+                    <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+                    Total Inactive players
+                </div>
+                <div class="txt2"> {{titledata?.inactive_count}} </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-4">
+
+
+        <mat-card class="dashboard-card-middle ">
+            <mat-card-header>
+                <span class="flaticon-success"></span>
+                Winner
+            </mat-card-header>
+            <!-- <mat-card-content style="background: url(/assets/images/card-background.png);height: 249px;background-repeat: no-repeat;  
+                background-size: cover ; margin-top: 24px; z-index: 1;">
+                <div class="row winner-card ">
+                    <div class="col" style="margin-top: 32px; ">
+                        <img src="/assets/images/party.png">
+                    </div>
+                    <div class="col" style="margin-top: 32px;">
+                        <div class="row">
+                            <div class="col img-responsive">
+                                <nb-user size="large" [picture]=top3players[0].profilePicture
+                                    [badgeText]=top3players[0].rank+1 badgePosition="bottom " class="img-responsive"
+                                    onlyPicture>
+                                </nb-user>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div style="margin-left: -9px; margin-top: 8px; color: white;">
+                                    {{top3players[0]?.user.name}}(<span
+                                        style="color: #F96368;">{{top3players[0]?.earnPoint}}</span>)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="margin-top: 32px;">
+                        <img src="/assets/images/party.png">
+                    </div>
+                </div>
+                <div class="row winner-card" style="margin-top: 75px;">
+                    <div class="col" style="margin-top: 60px;">
+                        <div class="row">
+                            <div class="col img-responsive">
+                                <nb-user size="large" [picture]=top3players[1].profilePicture
+                                    [badgeText]=top3players[1].rank+1 badgePosition="bottom " class="img-responsive"
+                                    onlyPicture>
+                                </nb-user>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div style="margin-left: -9px; margin-top: 8px; color: white;">
+                                    {{top3players[1].user.name}}(<span
+                                        style="color: #F96368;">{{top3players[1]?.earnPoint}}</span>)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style=" margin-left: 4px; margin-top: 60px;">
+                        <img src="/assets/images/trophy.png">
+                    </div>
+                    <div class="col" style="margin-top: 60px;">
+                        <div class="row">
+                            <div class="col">
+                                <nb-user size="large" [picture]=top3players[2].profilePicture
+                                    [badgeText]=top3players[2].rank+1 badgePosition="bottom " class="img-responsive"
+                                    onlyPicture>
+                                </nb-user>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col img-responsive">
+                                <div style=" margin-left: -9px;margin-top: 8px; color: white; margin-left: -12px;">
+                                    {{top3players[2]?.user.name}}(<span
+                                        style="color: #F96368;">{{top3players[2]?.earnPoint}}</span>)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content> -->
+            <mat-card-content *ngIf="top1players == false">
+                <p style="text-align: center; justify-content: center; margin-top: 114px;">Event not yet started</p>
+            </mat-card-content>
+            <mat-card-content class="text-center" *ngIf="top1players == true" style="background: url(/assets/images/card-background.png);height: 249px;background-repeat: no-repeat;  
+                background-size: cover ; margin-top: 24px; z-index: 1;">
+                <div class="row winner-card ">
+                    <div class="col">
+                        <img src="/assets/images/party.png" style="    margin-left: 20px;
+                        margin-top: 20px;">
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col img-responsive">
+                                <nb-user size="large" [picture]=top3players[0]?.profilePicture
+                                    [badgeText]=top3players[0]?.rank+1 badgePosition="bottom " class="img-responsive"
+                                    onlyPicture style=" margin-left: 20px; margin-top: 20px;">
+                                </nb-user>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="winner-card-txt text-center">
+                                    {{top3players[0]?.user?.name || "Name"}}<br>(<span
+                                        style="color: #F96368;">{{top3players[0]?.earnPoint}}</span>)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="/assets/images/party.png" style="margin-left: 30px;margin-top: 20px;">
+                    </div>
+                </div>
+                <div class="row winner-card">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col img-responsive">
+                                <nb-user size="large" [picture]=top3players[1]?.profilePicture
+                                    [badgeText]=top3players[1]?.rank+1 badgePosition="bottom " class="img-responsive"
+                                    onlyPicture style="margin-left: 36px;">
+                                </nb-user>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <div class="winner-card-txt text-center" style="margin-left: 20px;">
+                                    {{top3players[1].user?.name}} <br>(<span
+                                        style="color: #F96368;">{{top3players[1]?.earnPoint}}</span>)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="/assets/images/trophy.png" style="margin-left: 20px;margin-top: 20px;">
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <nb-user size="large" [picture]=top3players[2]?.profilePicture
+                                    [badgeText]=top3players[2]?.rank+1 badgePosition="bottom " class="img-responsive"
+                                    onlyPicture style="margin-left: 20px;">
+                                </nb-user>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col img-responsive">
+                                <div class="winner-card-txt" style="margin-left: 20px;">
+                                    {{top3players[2]?.user?.name}}<br>(<span
+                                        style="color: #F96368;">{{top3players[2]?.earnPoint}}</span>)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <div class="col col-sm-12 col-md-12 col- col-lg-6 col-xl-4">
+        <mat-card class="dashboard-card-middle ">
+            <mat-card-header>
+                <i class="fa fa-users fa-lg" aria-hidden="true"
+                    style="margin-left: -32px; margin-right: 4px; color: #ff8e0e; fill: currentColor;"></i>
+                Top 10 Players
+            </mat-card-header>
+            <mat-card-content style="margin-top: 16px;" [style.overflow]="'auto'" [style.height.px]="'220'">
+                <div class="pointsheading">
+                    <span>Total Points</span>
+                    <span style="float: right;">Total Count</span>
+                </div>
+                <li class="list-2" *ngFor="let user of top10players;">
+                    <div class="pointsvalue">
+                        <span>
+                            {{user.earnPoint}}
+                        </span>
+                        <span style="float: right;">
+                            {{user.sameRankCount}}
+                        </span>
+                    </div>
+                </li>
+            </mat-card-content>
+            <mat-card-actions style="text-align: center;">
+                <a routerLink='/pages/rank-view/list'>Go To Rank</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+
+    <div class="col col-sm-12 col-md-12 col- col-lg-6 col-xl-4">
+        <mat-card class="dashboard-card-middle ">
+            <mat-card-header>
+                <span class="flaticon-user"></span>
+                Current Contestants
+            </mat-card-header>
+            <mat-card-content class="contestants-list" [style.overflow]="'auto'" [style.height.px]="'250'">
+                <li class="list-1" *ngFor="let user of contestantsList;">
+                    <span style="padding-left: 4px; width: 36px; height: 36px; border-radius: 50%;"
+                        class="img-responsive"><img [src]=ip+user.images alt="avatar" class="img-responsive"
+                            style="border-radius: 50%; width:36px; height: 36px; object-fit: cover;"></span>
+                    <span style="padding-left: 8px;">{{user?.name}}</span>
+                    <span style="float: right; padding-right: 8px; padding-top: 4px;">{{user?.percentage + "%"}}</span>
+                </li>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<!-- <div class="row">
+    <div class="col col-sm-12 col-md-12 col-lg-6 col-xl-4">
+        <mat-card class="dashboard-card-end ">
+            <mat-card-header>
+                <span class="flaticon-party1"></span>
+                This Week event
+            </mat-card-header>
+            <mat-card-content class="end-card">
+                <ng-image-slider #nav [images]="images" [infinite]="true" [autoSlide]="4"
+                    [imageSize]="{width: '100%', height: 150}" slideImage="1"></ng-image-slider>
+            </mat-card-content>
+            <mat-card-actions class="end-card-action">
+                <a routerLink='/pages/event/event-list'>Go To Task</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div> -->

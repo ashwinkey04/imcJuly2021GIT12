@@ -1,0 +1,227 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.top-txt {
+  // font-family: "Proxima Nova";
+  font-size: 25px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.button {
+  background-color: #1d3c7f;
+  color: white;
+  height: 50px;
+  width: 106px;
+  border: none;
+  margin-right: 4px;
+}
+.padding-top {
+  margin-top: 64px;
+  font-size: 16px;
+  // font-weight: "Proxima Nova";
+}
+
+.button2 {
+  //   margin-top: -6px
+  background-color: #1d3c7f;
+  color: white;
+  height: 50px;
+  width: 131px;
+  border: none;
+  top: 2%;
+}
+
+.center-txt {
+  margin-top: 12px;
+}
+
+.grid-container {
+  margin-top: 64px;
+  font-size: 16px;
+  font-weight: "Proxima Nova";
+}
+
+::ng-deep .nb-theme-default nb-tabset .tab.active .tab-link {
+  background-color: #1d3c7f;
+  color: white;
+  border-bottom: none !important;
+}
+
+::ng-deep .nb-theme-default nb-tabset .tab.active .tab-link::before {
+  background-color: #1d3c7f !important;
+}
+
+::ng-deep .nb-theme-default nb-tabset .tab-link {
+  color: #000000;
+  font-size: 16px !important;
+  text-transform: capitalize !important;
+  font-weight: 200;
+  border-bottom: none !important;
+}
+
+// ::ng-deep .nb-theme-default nb-tabset .tab-link .tab:hover {
+//   text-transform: none !important;
+//   text-decoration: none !important;
+//   text-decoration-line: none !important;
+// }
+
+::ng-deep .nb-theme-default nb-tabset nb-tab {
+  padding: 1rem 0rem !important;
+}
+
+table {
+  width: 100%;
+  margin-top: 8px;
+  margin: 0px -4px 0px -4px;
+  overflow-x: hidden;
+}
+
+th {
+  font-size: 16px !important;
+  background-color: #1d3c7f;
+}
+
+// th,
+// td {
+//   font-size: 16px;
+//   // font-family: "Proxima Nova";
+// }
+
+.mat-elevation-z8 {
+  background: #fff;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0px 3px 14px 2px rgba(131, 131, 131, 0.12);
+}
+
+td {
+  font-size: 14px !important;
+  border-bottom: 0.5px solid #ededed;
+}
+
+.active,
+.live {
+  color: #14c242;
+}
+
+.inactive {
+  color: red;
+}
+
+// mat-card {
+//   height: 159px;
+// }
+
+.img1 {
+  width: 100%;
+  height: 100px;
+  // height: 95px;
+  // margin-top: -12px;
+  // margin-left: 6px;
+}
+
+.image_upload {
+  margin: 6px;
+}
+
+.bottom {
+  display: flex;
+  height: 30px;
+  margin-top: 4px;
+  // flex-direction: row;
+  //width: 100%;
+  // height: 51px;
+  // margin-left: -10px;
+  // margin-top: 2px;
+}
+.bottom1 {
+  flex: 1;
+  background-color: #1d3c7f;
+  color: white;
+  padding: 6px;
+}
+
+.bottom2 {
+  width: 20%;
+  background-color: #f96368;
+  cursor: pointer;
+  color: white;
+  padding: 8px;
+  padding-left: 4px;
+  padding-left: 16px;
+}
+
+.flex-design {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+.customclass {
+  background-color: #1d3c7f;
+}
+
+.create {
+  background-color: #1d3c7f !important;
+  color: white !important;
+  height: 48px;
+  width: 107px;
+  font-size: 16px;
+  font-family: "Proxima";
+  padding: 16px;
+  padding-left: 44px;
+  margin-right: 12px;
+  margin-left: 8px;
+}
+
+.imageList {
+  list-style-type: none;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+  background: #f96368;
+  margin-right: 16px;
+  margin-bottom: 8px;
+}
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.extra-row {
+  padding: 8px;
+  color: white;
+}
+
+// tr {
+//   height: 50px !important;
+// }
+
+.filter-search {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.action-icons ul li {
+  display: inline-block;
+  padding-left: 0px !important;
+}
+
+.action-icons ul {
+  padding-left: 0px !important;
+}
+
+.card-width {
+  width: 30rem;
+}

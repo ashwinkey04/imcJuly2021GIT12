@@ -1,0 +1,59 @@
+<div><span class="flaticon-user"></span><span class="title">Update Players</span></div>
+
+<!-- Players View Form -->
+<div class="row">
+    <div class="col">
+        <span>Name</span>
+        <span class="right">:{{PlayerInfo?.name}}</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <span>User Name</span>
+        <span class="right">:{{PlayerInfo?.userName}}</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <span>Mail Id</span>
+        <span class="right">:{{PlayerInfo?.email}}</span>
+    </div>
+</div>
+<div class="row" *ngIf="PlayerInfo.city != null">
+    <div class="col">
+        <span>City</span>
+        <span class="right">:{{PlayerInfo?.city}}</span>
+    </div>
+</div>
+<div class="row" *ngIf="PlayerInfo.state != null">
+    <div class="col">
+        <span>State</span>
+        <span class="right">:{{PlayerInfo?.state}}</span>
+    </div>
+</div>
+<div class="row" *ngIf="PlayerInfo.country != null">
+    <div class="col">
+        <span>Country</span>
+        <span class="right">:{{PlayerInfo?.country}}</span>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col">
+        <span>Status</span>
+        <span class="right">:{{PlayerInfo.status}}</span>
+    </div>
+</div> -->
+<div class="row">
+    <div class="col">
+        <span>Action</span>
+        <span class="right" style="margin-top: -4px;">
+            <nb-toggle [checked]="status1" (checkedChange)="changeEvent($event)"></nb-toggle>
+        </span>
+    </div>
+</div>
+
+<span style=" margin-left: 10%; ">
+    <button nbButton size="medium" type="submit" class="save" (click)="playersUpdate()">Save</button>
+    <button nbButton size="medium" type="reset" routerLink='/pages/players/players-list' class="cancel">Cancel</button>
+</span>

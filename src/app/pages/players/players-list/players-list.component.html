@@ -1,0 +1,154 @@
+<div class="row">
+    <div class="col">
+        <span class="flaticon-user"></span> <span style="margin-left: 8px;" class="title ">Players</span>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 12px;">
+    <div class="col-3">
+        <nb-select name="status" [(selected)]="selectedItem" (selectedChange)="selectionItem($event)" fullWidth>
+            <nb-option *ngFor="let item of viewStatus" [value]="item.name">
+                {{item.name | titlecase}}
+            </nb-option>
+        </nb-select>
+    </div>
+    <div class="col-3">
+        <nb-form-field>
+            <input type="search" nbInput placeholder="Search name, city, state, country" name="search" [(ngModel)]="search"
+                (ngModelChange)="stringChanged()">
+            <button nbSuffix nbButton ghost class="search-box" style="background-color: inherit;" (click)="Search()">
+                <nb-icon icon="search-outline" pack="eva"></nb-icon>
+            </button>
+        </nb-form-field>
+    </div>
+    <div class="col">
+        <div style="float: right;">
+            <img src="./assets/images/Group 119.png" class="pdf" (click)="pdf.saveAs('ContestantsList.pdf')">
+        </div>
+    </div>
+</div>
+
+<!-- <div class="filter">
+    <span>
+        <nb-select name="status" [(selected)]="selectedItem" (selectedChange)="selectionItem($event)" fullwidth>
+            <nb-option *ngFor="let item of viewStatus" [value]="item.name">
+                {{item.name | titlecase}}
+            </nb-option>
+        </nb-select>
+    </span>
+    <span style="margin-left: 8px;">
+        <nb-form-field>
+            <input type="search" nbInput placeholder="search" name="search" [(ngModel)]="search"
+                (ngModelChange)="stringChanged()">
+            <button nbSuffix nbButton ghost class="search-box" style="background-color: inherit;" (click)="Search()">
+                <nb-icon icon="search-outline" pack="eva"></nb-icon>
+            </button>
+        </nb-form-field>
+    </span>
+</div> -->
+
+
+
+
+<div class="row">
+    <div class="col table-responsive " style="margin-top: 12px;">
+
+
+        <!-- Players List -->
+        <kendo-pdf-export #pdf paperSize="auto" margin="1cm">
+            <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8 ">
+
+                <!-- infinite-scroll
+            [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
+            [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()" (scrolledUp)="onUp()" -->
+                <!-- <nb-list nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()"> -->
+
+                <ng-container matColumnDef="userName">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> userName </th>
+                    <td mat-cell *matCellDef="let element">{{element.userName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> Name </th>
+                    <td mat-cell *matCellDef="let element">{{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Mail">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> Mail Id </th>
+                    <td mat-cell *matCellDef="let element">{{element.email}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> City </th>
+                    <td mat-cell *matCellDef="let element">
+                        <!-- {{element.city |titlecase}} -->
+                        <span *ngIf="element.city == null">
+                            Not Given
+                        </span>
+                        <span *ngIf="element.city != null">
+                            {{element.city |titlecase}}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="state">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> State </th>
+                    <td mat-cell *matCellDef="let element">
+                        <!-- {{element.state |titlecase}} -->
+                        <span *ngIf="element.state == null">
+                            Not Given
+                        </span>
+                        <span *ngIf="element.state != null">
+                            {{element.state |titlecase}}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="country">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> Country </th>
+                    <td mat-cell *matCellDef="let element">
+                        <!-- {{element.country |titlecase}} -->
+                        <span *ngIf="element.country == null">
+                            Not Given
+                        </span>
+                        <span *ngIf="element.country != null">
+                            {{element.country |titlecase}}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> Status </th>
+                    <td mat-cell *matCellDef="let element ">
+                        <span class="{{element.status}}">{{element.status|titlecase}}</span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef style="color:white"> Action </th>
+                    <td mat-cell *matCellDef="let element"><a routerLink='/pages/players/players-update'
+                            [queryParams]="{type: 'PlayerView', id: element.uid}">
+                            <i class="fas fa-pen" style="margin-bottom: 12px; cursor: pointer; color: #616161;"></i></a>
+                    </td>
+                </ng-container>
+                <!-- </nb-list> -->
+                <!-- <ng-container matColumnDef="noData">
+                    <td mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length" class="text-center"> No records found.</td>
+                </ng-container> -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <!-- <tr mat-footer-row *matFooterRowDef="['noData']" [hidden]="dataSource && dataSource?.data?.length <= 0"></tr> -->
+
+            </table>
+        </kendo-pdf-export>
+    </div>
+</div>
+
+<mat-paginator #paginator [pageSize]="200" [pageSizeOptions]="[100, 50, 20]" [showFirstLastButtons]="true">
+</mat-paginator>
+
+<div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; ">
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+</div>

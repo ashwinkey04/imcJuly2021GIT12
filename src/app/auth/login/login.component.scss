@@ -1,0 +1,53 @@
+.login-card {
+  // background-color: #FF4136;
+  width: 422px;
+  // height: 58vh;
+  // height: 59vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(to bottom right, #3458ab 0%, #2a4574 100%);
+  color: white;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  nb-card-body,
+  h3,
+  span {
+    color: white !important;
+  }
+}
+
+.label {
+  text-align: left !important;
+  color: white !important;
+}
+
+// nb-card-body {
+//   position: fixed;
+// }
+
+.caption.status-danger {
+  color: white !important;
+}
+
+// #passwordField {
+//   span {
+//     position: absolute;
+//   }
+// }
+
+// .password-icon {
+//   margin-top: 4px;
+// }
+
+// .nb-theme-default .size-medium.icon-start.icon-end.appearance-ghost {
+//   margin-top: 16px;
+// }
+
+::ng-deep .nb-theme-default .appearance-ghost.status-basic {
+  margin-top: 24px;
+}

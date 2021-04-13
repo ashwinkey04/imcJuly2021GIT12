@@ -1,0 +1,159 @@
+<span><i class="fa fa-tasks fa-lg" aria-hidden="true"></i></span><span class="title"> Task</span>
+
+<div class="row" style="margin-top: 12px;">
+    <div class="col-2">
+        <nb-select name="status" [(selected)]="selectedItem" (selectedChange)="selectionItem($event)" fullWidth>
+            <nb-option *ngFor="let item of viewStatus" [value]="item.name">
+                {{item.name | titlecase}}
+            </nb-option>
+        </nb-select>
+    </div>
+    <div class="col-3">
+        <nb-form-field>
+            <input type="search" nbInput placeholder="Search task name" name="search" [(ngModel)]="search"
+                (ngModelChange)="stringChanged()">
+            <button nbSuffix nbButton ghost class="search-box" (click)="Search()">
+                <nb-icon icon="search-outline" pack="eva"></nb-icon>
+            </button>
+        </nb-form-field>
+    </div>
+    <div class="col">
+        <!-- <img style="float: right;" src="./assets/images/Group 119.png" class="pdf"> -->
+        <button style="float: right;" nbButton size="medium" class="create" routerLink='/pages/event/weekly-event-entry'
+            [queryParams]="{type : 'create1'}">
+            <!-- <i class="flaticon-plus"></i> -->
+            <i style class="fas fa-plus-circle fa-lg"></i>
+            <span style="margin-left: 8px;">Create</span>
+        </button>
+    </div>
+
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card class="card-width">
+        <nb-card-header>Task Info
+            <span (click)="ref.close()" class="float-right pointer"><i class="fas fa-times"></i></span>
+        </nb-card-header>
+        <nb-card-body>
+            {{boxViewData}}
+        </nb-card-body>
+    </nb-card>
+</ng-template>
+
+<!-- Task Table -->
+
+<div class="row" style="margin-top: 8px;">
+    <div class="col table-responsive">
+        <table mat-table [dataSource]="datasource" multiTemplateDataRows matSort class="  mat-elevation-z8 ">
+
+            <ng-container matColumnDef="Week">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Week </th>
+                <td style="width: 8% !important;" mat-cell *matCellDef="let element">
+                    <div>{{element.week}}</div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Name </th>
+                <td style="width: 15% !important;" mat-cell *matCellDef="let element">
+                    <div>{{element.name}}</div>
+                    <div>{{element.translation[element.nativeLanguage].name}}</div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Total_Change_Count">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Total Change Count </th>
+                <td style="text-align: center;" mat-cell *matCellDef="let element">
+                    {{element.totalChangesAccept}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Max_Select_Count">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Max Select Count </th>
+                <td style="text-align: center;" mat-cell *matCellDef="let element">
+                    {{element.maxContestants}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Start_Day_Time">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Start Day & Time </th>
+                <td mat-cell *matCellDef="let element"> {{element.startAt | date : 'short'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="End_Day_Time">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> End Day & Time </th>
+                <td mat-cell *matCellDef="let element"> {{element.endAt | date : 'short'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Winner_Name">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Winner Name </th>
+                <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element.winningContestants.length == 0">
+                        <span>Not Yet Revealed</span>
+                    </span>
+                    <span *ngIf="element.winningContestants.length ==! 0"></span>
+                    <li *ngFor="let Winners of element.winningContestants;">
+                        {{Winners.name}}
+                    </li>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Status </th>
+                <td mat-cell *matCellDef="let element ">
+                    <span class="{{element.status}}">{{element.status | titlecase}}</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef style="color:white"> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <span style="display: block;">
+                        <i routerLink='/pages/event/weekly-event-entry'
+                            [queryParams]="{type : 'update1', id:element._id}" class="fas fa-pen"
+                            style="display:inline-block;margin-right:10px;  cursor: pointer;"></i>
+                        <span (click)="toggleResult()"
+                            (click)="expandedElement = expandedElement === element ? null : element">
+                            <i class="fa fa-eye" aria-hidden="true" (click)="open(element._id, dialog)"
+                                style=" display:inline-block; cursor: pointer;">
+                            </i>
+                        </span>
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let search" colspan="7">
+                    <div class="example-element-detail "
+                        [@detailExpand]="search === expandedElement ? 'expanded' : 'collapsed'">
+                        <div class="example-element-description extra-row">
+                            <div class="">
+                                <span>{{search.rules}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </ng-container> -->
+
+            <!-- <ng-container matColumnDef="noData">
+                <td mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length" class="text-center"> No
+                    records found.</td>
+            </ng-container> -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+            <!-- <tr mat-footer-row *matFooterRowDef="['noData']" [hidden]="dataSource && dataSource.data.length <= 0"></tr> -->
+
+            <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <tr mat-row *matRowDef="let search; columns: displayedColumns1;"
+                class="example-element-row"
+                [class.example-expanded-row]="expandedElement === search">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
+                class="example-detail-row"></tr> -->
+
+        </table>
+
+    </div>
+</div>
+
+<mat-paginator #paginator [pageSize]="20" [pageSizeOptions]="[20, 50, 100]" [showFirstLastButtons]="true">
+</mat-paginator>

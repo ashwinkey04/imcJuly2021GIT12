@@ -1,0 +1,81 @@
+<div>
+    <span Class="flaticon-success"></span>
+    <span class="title">Winner Contestants</span>
+</div>
+
+<form #WinnerForm="ngForm" (ngSubmit)="Winner(WinnerForm)">
+    <div class="row top-padding">
+        <div class="col-6">
+            <div>
+                <label>
+                    Event Name
+                </label>
+            </div>
+            <nb-select style="background-color: #FFFFFF !important;" placeholder="Select Showcase"
+                [(selected)]="selectedItem" fullWidth name="taskname" [(ngModel)]="taskname">
+                <nb-option *ngFor="let item of taskList" [value]="item._id">
+                    {{item.name}}</nb-option>
+            </nb-select>
+            <!-- <div class="form-group mt-1">
+                <label>Task Name</label>
+                <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth name="name"
+                    [(ngModel)]="name" required #name1="ngModel"
+                    [status]="(name1.dirty && name1.invalid  && WinnerForm.submitted ?'danger':'') "
+                    [attr.aria-invalid]="name1.invalid && name1.touched ? true : null">
+
+                <ng-container *ngIf="name1.invalid && (name1.dirty ||WinnerForm.submitted)">
+                    <p class="caption status-danger">
+                        Task Name is required!
+                    </p>
+                </ng-container>
+            </div> -->
+        </div>
+        <div class="col-6">
+            <div>
+                <label>
+                    Select Winner Conteatants
+                </label>
+            </div>
+            <nb-select style="background-color: #FFFFFF !important;" multiple placeholder="Multiple Select" fullWidth
+                name="WinnerName" [(ngModel)]="WinnerName">
+                <nb-option *ngFor="let item of contestants" [value]="item._id">{{item.name}}
+                </nb-option>
+            </nb-select>
+        </div>
+    </div>
+    <div class="row  last-padding">
+        <!-- <div class="col-6">
+            <div>
+                <label>Start Time</label>
+            </div>
+            <textarea nbInput style="background-color: #FFFFFF !important; resize: none !important; height:100px"
+                type="text" fullWidth placeholder="This week winner is"></textarea>
+        </div> -->
+
+
+        <!-- <div class="col-3">
+            <div>
+                <label>
+                    Winner Date
+                </label>
+            </div>
+            <nb-form-field>
+                <input style="background-color: #FFFFFF !important;" #dateInput id="datepicker"
+                    data-options="{autoFocus:false}" nbInput readonly #datepicker placeholder="select a date"
+                    [nbDatepicker]="formpicker" fullWidth name="date" [(ngModel)]="date" />
+                <button nbSuffix nbButton ghost style="border: none; background-color: #f7f9fc;"
+                    (click)="dateInput.click()">
+                    <nb-icon icon="calendar"> </nb-icon>
+                </button>
+                <nb-datepicker format="dd-MM-yyyy" (dateChange)="ChangedDate($event)" #formpicker></nb-datepicker>
+            </nb-form-field>
+        </div> -->
+    </div>
+
+    <div style="float:right;    margin-top: 12px;">
+        <button nbButton size="medium" type="submit" class="save" [disabled]="spinner" [nbSpinner]="spinner"
+            nbSpinnerStatus="primary" nbSpinnerSize="xsmall">Save</button>
+        <button nbButton size="medium" type="reset" class="cancel" routerLink="/pages/event/event-list">Cancel</button>
+    </div>
+
+</form>

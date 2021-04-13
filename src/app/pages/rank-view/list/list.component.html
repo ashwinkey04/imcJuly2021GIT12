@@ -1,0 +1,110 @@
+<!-- <div>
+    <span class="flaticon-success"></span><span style="margin-left: 8px;" class="title">Rank View</span>
+    <span style="float: right;"> <img src="./assets/images/Group 119.png" class="pdf"></span>
+</div> -->
+
+<div class="row ">
+    <div class="col" style="margin-top: 10px;">
+        <span class="flaticon-success"></span><span style="margin-left: 8px;" class="title">Rank View</span>
+    </div>
+    <!-- <div class="col">
+        <div style="float: right; cursor: pointer;">
+            <img src="./assets/images/Group 119.png" class="pdf" (click)="pdf.saveAs('RankView.pdf')">
+        </div>
+    </div> -->
+</div>
+<div class="row" style="margin-top: 12px;">
+    <div class="col-3">
+        <nb-select name="rank" [(selected)]="rank" (selectedChange)="selectionItem($event)" placeholder="Filter By Rank"
+            fullWidth>
+            <nb-option value="all">
+                All Rank
+            </nb-option>
+            <nb-option *ngFor="let item of rankList" [value]="item.rank">
+                Rank {{item.rank + 1}}
+            </nb-option>
+        </nb-select>
+    </div>
+    <div class="col">
+        <div style="float: right;">
+            <img src="./assets/images/Group 119.png" class="pdf" (click)="pdf.saveAs('ContestantsList.pdf')">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col table-responsive">
+
+        <!-- Reports List -->
+        <kendo-pdf-export #pdf paperSize="auto" margin="1cm">
+            <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8" style="margin-top:24px;">
+
+                <ng-container matColumnDef="Rank">
+                    <th mat-header-cell style="width: 10% !important; " *matHeaderCellDef
+                        style="color:white;text-align: center;"> Rank </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10% !important; text-align: center; ">
+                        {{element.rank + 1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="image">
+                    <th style="width: 20% !important;" mat-header-cell *matHeaderCellDef style="color:white"> Image
+                    </th>
+                    <td mat-cell *matCellDef="let element" style="width: 20% !important;"> <img
+                            style="height: 29px; width: 30px;" src="{{element.user.profilePicture}}" alt="Avatar"
+                            class="avatar img-response"></td>
+                </ng-container>
+
+                <ng-container matColumnDef="Name">
+                    <th style="width: 35% !important;" mat-header-cell *matHeaderCellDef
+                        style="color:white;   width: 100px;"> Name </th>
+                    <td style="width: 35% !important;" mat-cell *matCellDef="let element"> {{element.user.userName}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Email">
+                    <th style="width: 35% !important;" mat-header-cell *matHeaderCellDef
+                        style="color:white;   width: 100px;"> Email </th>
+                    <td style="width: 35% !important;" mat-cell *matCellDef="let element"> {{element.user.email}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Mobile">
+                    <th style="width: 35% !important;" mat-header-cell *matHeaderCellDef
+                        style="color:white;   width: 100px;"> Mobile </th>
+                    <td style="width: 35% !important;" mat-cell *matCellDef="let element"> {{element.user.mobile}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Totalevents">
+                    <th style="width: 20% !important;" mat-header-cell *matHeaderCellDef
+                        style="color:white; text-align: center;"> Total Played Tasks
+                    </th>
+                    <td style="width: 20% !important; text-align: center;" mat-cell *matCellDef="let element">
+                        {{element.tasks.length}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="earnPoint">
+                    <th style="width: 25% !important;" mat-header-cell *matHeaderCellDef style="color:white"> Earn Point
+                    </th>
+                    <td style="width: 25% !important;" mat-cell *matCellDef="let element"> {{element.earnPoint}}</td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="noData">
+                    <td mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length" class="text-center"> No records found.</td>
+                </ng-container> -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <!-- <tr mat-footer-row *matFooterRowDef="['noData']" [hidden]="dataSource?.data?.length <= 0"></tr> -->
+            </table>
+
+        </kendo-pdf-export>
+    </div>
+</div>
+
+<mat-paginator #paginator [pageSize]="100" [pageSizeOptions]="[50, 20, 10]" [showFirstLastButtons]="true">
+</mat-paginator>
+
+<div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; ">
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,134 @@
+<div><span class="flaticon-party1"></span><span class="text">Create Events</span></div>
+
+<form #UpdateForm="ngForm" (ngSubmit)="Create(UpdateForm)">
+    <nb-card style="background-color:#f9f9f9 !important; border: none;">
+        <div class='row'>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-3">
+                            <div class="form-group mt-1">
+                                <label for="exampleInputEmail1" class="label text-left">Event Name</label>
+                                <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                    name="EventName" [(ngModel)]="EventName" placeholder="Select Captian"
+                                    #emailRef="ngModel" nbInput fullWidth id="exampleInputEmail1" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mt-1">
+                            <label for="exampleInputEmail1" class="label text-left">Total Change Count</label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="EventName" [(ngModel)]="EventName" placeholder="Select Captian"
+                                #emailRef="ngModel" nbInput fullWidth id="exampleInputEmail1" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mt-1">
+                            <label for="exampleInputEmail1" class="label text-left">Max select Count</label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="EventName" [(ngModel)]="EventName" placeholder="Select Captian"
+                                #emailRef="ngModel" nbInput fullWidth id="exampleInputEmail1" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="img-edit">
+
+                    <ngx-dropzone (change)="onSelect($event)" style="border: none;">
+                        <ngx-dropzone-label>Drop it, here!</ngx-dropzone-label>
+
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                            [file]="f" [removable]="true" (removed)="onRemove($event)">
+                            <ngx-dropzone-label></ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+
+                    </ngx-dropzone>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div>
+                    <label>Start Day</label>
+                </div>
+                <div class="toggle-padding">
+                    <nb-select style="background-color: #FFFFFF !important;" placeholder="Select Showcase"
+                        [(selected)]="selectedItem" fullWidth>
+                        <nb-option value="">Monday</nb-option>
+                        <nb-option value="0">Tuesday</nb-option>
+                        <nb-option value="1">Wednessday</nb-option>
+                        <nb-option value="2">Thursday</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group mt-1">
+                    <label>Start Time</label>
+                    <input style="background-color: #FFFFFF !important;" type="text" nbInput placeholder="6:00 Pm">
+                </div>
+            </div>
+            <div class="col-3">
+                <div>
+                    <label>End Day</label>
+                </div>
+                <div class="toggle-padding">
+                    <nb-select style="background-color: #FFFFFF !important;" placeholder="Select Showcase"
+                        [(selected)]="selectedItem" fullWidth>
+                        <nb-option value="">Monday</nb-option>
+                        <nb-option value="0">Tuesday</nb-option>
+                        <nb-option value="1">Wednessday</nb-option>
+                        <nb-option value="2">Thursday</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group mt-1">
+                    <label>End Time</label>
+                    <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+                        placeholder="11:59 pm">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group mt-1">
+                    <label>Rules</label>
+                    <textarea style="background-color: #FFFFFF !important; height:100px; resize: none;" nbInput
+                        fullWidth
+                        placeholder="The Thursday Night to Friday Night 8pm Captain Selected - 2 option"></textarea>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group mt-1">
+                    <label>Winner Point</label>
+                    <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+                        placeholder="250">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group mt-1">
+                    <label>Loser Point</label>
+                    <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+                        placeholder="100">
+                </div>
+            </div>
+            <div class="col-2">
+                <div>
+                    <label>Action</label>
+                </div>
+                <nb-toggle></nb-toggle>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col' style="float: left;">
+                <button nbButton size="medium" class="save">Save</button>
+                <button nbButton size="medium" class="cancel">Cancel</button>
+            </div>
+        </div>
+    </nb-card>
+</form>

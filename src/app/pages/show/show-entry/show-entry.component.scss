@@ -1,0 +1,121 @@
+.top-txt {
+  font-size: 25px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+// .img-edit {
+//   height: 100px;
+//   width: 200px;
+//   border: 1px solid #e1e1e1;
+//   background-color: #ffffff;
+//   margin-top: 48px;
+// }
+
+.file-select {
+  color: #f96368 !important;
+  margin-top: 6px;
+  font-size: 18px;
+  // font-family: "Proxima Nova";
+  position: absolute;
+  left: 17%;
+  cursor: pointer;
+}
+
+.img-edit {
+  // object-fit: cover;
+  // box-sizing: border-box;
+  // border: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  margin-top: 10px;
+  // margin-left: 48px;
+}
+
+#image-preview {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow: hidden !important;
+  opacity: 15 !important;
+  height: 128px !important;
+  width: 250px !important;
+  // height: 100%;
+}
+
+.save {
+  display: inline-block;
+  width: 131px;
+  height: 50px;
+  background-color: #1d3c7f !important;
+  color: white !important;
+  font-size: 16px;
+  // font-family: "Proxima";
+  padding: 16px;
+  padding-left: 46px;
+  margin-right: 12px;
+}
+
+.cancel {
+  display: inline-block;
+  width: 131px;
+  height: 50px;
+  background-color: #f96368 !important;
+  color: white !important;
+  font-size: 16px;
+  // font-family: "Proxima";
+  padding: 16px;
+  padding-left: 46px;
+  margin-right: 10px;
+}
+
+.button {
+  // display: flex;
+  // justify-content: center;
+  // margin-top: 7%;
+  float: right;
+}
+
+label {
+  font-size: 18px !important;
+  font-weight: 200 !important;
+  color: #040404 !important;
+}
+
+.lanDropdown {
+  margin-top: 13px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+mat-datepicker-toggle {
+  font-size: 25px !important;
+}
+
+::ng-deep .mat-form-field-flex {
+  border: 0.25px solid #e4e9f2 !important;
+  background-color: #ffffff;
+  padding-left: 6px;
+  border-radius: 5px;
+  // border-bottom: 0.25px solid #e4e9f2 !important;
+  // padding-left: 0.5rem !important;
+}
+
+// ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+//   margin-top: 30px;
+// }
+
+.logo-edit {
+  border: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  height: 100px;
+  width: 100px;
+}
+
+#image-preview {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  opacity: 15 !important;
+}

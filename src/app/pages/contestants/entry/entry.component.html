@@ -1,0 +1,163 @@
+<div><span class="flaticon-user-1"></span><span class="title">{{type|titlecase}} Contestants</span></div>
+<!-- <div class="top-txt">Edit Contestants</div> -->
+
+
+<div class="row top-spacing">
+    <div class="col-8">
+        <nb-card style="background-color: #f9f9f9 !important; border: none;">
+            <form #UpdateForm="ngForm" (ngSubmit)="Update(UpdateForm)">
+                <div>
+                    <!-- default form data -->
+                    <div class="mt-3">
+                        <div class="form-group mt-1">
+                            <label for="NameField" class="label text-left">Name <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="name" [(ngModel)]="name" #nameRef="ngModel" nbInput fullWidth id="NameField"
+                                required
+                                [status]="(nameRef.dirty && nameRef.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="nameRef.invalid && nameRef.touched ? true : null">
+
+                            <ng-container *ngIf="nameRef.invalid && (nameRef.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    name is required!
+                                </p>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mt-1">
+                            <label for="ProfessionalFiled" class="label text-left">Professional <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="professional" [(ngModel)]="professional" #professionRef="ngModel" nbInput
+                                fullWidth id="ProfessionalField" required
+                                [status]="(professionRef.dirty && professionRef.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="professionRef.invalid && professionRef.touched ? true : null">
+
+                            <ng-container *ngIf="professionRef.invalid && (professionRef.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Profession is required!
+                                </p>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mt-1">
+                            <label for="exampleInputEmail1" class="label text-left">Biography <span
+                                    class="caption status-danger">*</span></label>
+                            <textarea
+                                style="background-color: #ffffff; border: 0.5px solid #e1e1e1; resize: none; height: 100px;"
+                                nbInput fullWidth name="biography" [(ngModel)]="biography" placeholder="Textarea"
+                                #biographRef="ngModel" required
+                                [status]="(biographRef.dirty && biographRef.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="biographRef.invalid && biographRef.touched ? true : null"></textarea>
+                            <ng-container *ngIf="biographRef.invalid && (biographRef.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Biography is required!
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <!-- native form data -->
+                    <div>
+                        <div class="form-group mt-1">
+                            <label for="NameField" class="label text-left">Name In Native Language <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="name1" [(ngModel)]="name1" #name1Ref="ngModel" nbInput fullWidth id="NameField"
+                                required
+                                [status]="(name1Ref.dirty && name1Ref.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="name1Ref.invalid && name1Ref.touched ? true : null">
+
+                            <ng-container *ngIf="name1Ref.invalid && (name1Ref.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Name in Native Language Required!
+                                </p>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mt-1">
+                            <label for="ProfessionalFiled" class="label text-left">Professional In Native
+                                Language <span class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="professional1" [(ngModel)]="professional1" #profession1Ref="ngModel" nbInput
+                                fullWidth id="ProfessionalFiled" required
+                                [status]="(profession1Ref.dirty && profession1Ref.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="profession1Ref.invalid && profession1Ref.touched ? true : null">
+
+                            <ng-container
+                                *ngIf="profession1Ref.invalid && (profession1Ref.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Profession in Native Language Required!
+                                </p>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mt-1">
+                            <label for="exampleInputEmail1" class="label text-left">Biography In Native Language <span
+                                    class="caption status-danger">*</span></label>
+                            <textarea
+                                style="background-color: #ffffff; border: 0.5px solid #e1e1e1; resize: none; height: 100px;"
+                                nbInput fullWidth name="biography1" [(ngModel)]="biography1" #biograph1Ref="ngModel"
+                                placeholder="Textarea" required
+                                [status]="(biographRef.dirty && biographRef.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="biograph1Ref.invalid && biograph1Ref.touched ? true : null"></textarea>
+                            <ng-container *ngIf="biograph1Ref.invalid && (biograph1Ref.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Biography in Native Language Required!
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span style="float: left;">
+                            <div style="font-size: 16px; color: #616161; margin-bottom: 4px;">
+                                <span [ngClass]="{'activeStatus':status}">InActive</span>/<span
+                                    [ngClass]="{'activeStatus':!status}">Active</span>
+                            </div>
+                            <nb-toggle name="status" [(ngModel)]="status" #statusRef="ngModel" required>
+                            </nb-toggle>
+                        </span>
+                        <span style="float: right;">
+                            <button [disabled]="spinner" type="submit" size="medium" class="save" nbButton
+                                [nbSpinner]="spinner" nbSpinnerStatus="primary" nbSpinnerSize="xsmall">
+                                {{type | titlecase}}</button>
+                            <button nbButton type="reset" size="medium" class="cancel"
+                                routerLink="/pages/contestants/list">Cancel</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </nb-card>
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="col">
+                <!-- Image Upload -->
+
+                <!-- <div class="row">
+                    <div class="col img-edit">
+                        <img *ngIf="imgurl" [src]="imgurl" style="width: 147px; height: 147px; object-fit: cover; border-radius: 50%;    margin-top: 4px;
+                        margin-left: 4px;" alt="" class="img-responsive">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>Note : Image Size 224*225 Px</div>
+                    </div>
+                </div> -->
+                <div class="img-edit">
+
+                    <ngx-dropzone (change)="onChange($event)" style="border: none;" [multiple]="false"
+                        accept="image/jpeg,image/jpg,image/png,image/gif">
+                        <ngx-dropzone-label *ngIf="files.length==0 && !(imgurl)">Drop it, here!</ngx-dropzone-label>
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" id="image-preview"
+                            *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove($event)">
+                        </ngx-dropzone-image-preview>
+                        <div style="padding: 0px 13px;">
+                            <img *ngIf="files.length==0 && (imgurl)" [src]="this.imgurl" alt=""
+                                style="width: 100% !important;" class="img-responsive" />
+                        </div>
+                    </ngx-dropzone>
+                    <div>Please select block to Upload Image and drag and drop Image</div>
+                </div>
+            </div>
+        </div>
+    </div>

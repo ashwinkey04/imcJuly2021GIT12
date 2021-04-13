@@ -1,0 +1,215 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.p1 {
+  font-size: 26px;
+  // font-family: "Proxima Nova Bold" !important;
+  margin-left: 12px;
+  font-weight: 600;
+}
+.dashboard-card {
+  height: 80px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 12px;
+}
+
+.dashboard-card1 {
+  background-image: linear-gradient(to right, #84aafc, #1d3c7f);
+}
+
+.dashboard-card2 {
+  background-image: linear-gradient(to right, #7d8ff8, #3e4eb2);
+}
+
+.dashboard-card3 {
+  background-image: linear-gradient(to right, #f96368, #d63b40);
+}
+
+.dashboard-card-middle {
+  height: 318px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 12px;
+  .flaticon-success {
+    color: #ff8e0e;
+    fill: currentColor;
+    margin-left: -30px;
+    margin-right: 8px;
+  }
+  .flaticon-user {
+    color: #f96368;
+    fill: currentColor;
+    margin-left: -30px;
+    margin-right: 8px;
+  }
+}
+
+.dashboard-card-end {
+  height: 318px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 12px;
+  .flaticon-party1 {
+    color: #14c242;
+    fill: currentColor;
+    margin-left: -30px;
+    margin-right: 8px;
+  }
+}
+
+.txt {
+  color: white;
+  font-size: 16px;
+}
+
+.txt1 {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  color: white;
+  font-size: 20px;
+}
+.txt2 {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  color: white;
+  font-size: 20px;
+}
+
+mat-card-header {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.icon {
+  margin-left: -26px;
+}
+
+.list-1 {
+  background-color: #1d3c7f;
+  color: white;
+  border-radius: 25px;
+  margin-top: 4px;
+  list-style-type: none;
+  border-color: #ffffff;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 16px;
+}
+
+.contestants-list {
+  // overflow: auto;
+  // box-sizing: border-box;
+  // position: absolute;
+  // right: 0;
+  // width: 100%;
+  // height: 100%;
+  margin-top: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #1d3c7f;
+}
+
+.week-card {
+  color: #f96368;
+  text-align: center;
+  padding-top: 32px;
+  font-size: 20px;
+}
+
+.list-2 {
+  list-style-type: none;
+  font-size: 16px;
+}
+// li:nth-child(even) {
+//   background-color: #f2f2f2;
+// }
+
+.pointsheading {
+  background-color: #1d3c7f;
+  height: 35px;
+  color: white;
+  padding-top: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 16px;
+}
+
+.pointsvalue {
+  border: 0.25px solid #b1b1b1;
+  height: 36px;
+  padding-top: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.middle-card-1 {
+  margin-top: 32px;
+}
+
+.winner-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-basis: auto;
+}
+
+.winner-card-txt {
+  width: 10px;
+  margin-top: 3px;
+  margin-left: -8px;
+  color: white;
+}
+
+.images {
+  // margin-left: -8px;
+  // margin-top: 16px;
+  width: 100%;
+  //   display: inline-block;
+  //   max-width: fit-content;
+}
+
+.end-card-action {
+  text-align: center;
+  margin-top: 28px;
+}
+
+// @media only screen and (max-width: 1024px) and (min-width: 991px) {
+//   .winner-card {
+//     margin-left: 18px;
+//   }
+// }
+
+@media (min-width: 991px) and (max-width: 1023px) {
+  // .images {
+  //   margin-left: -13px;
+  // }
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+  // .images {
+  //   width: 60vw;
+  //   margin-left: -8px;
+  // }
+  // .end-card-action {
+  //   margin-top: -10px;
+  // }
+}
+
+.end-card {
+  margin: auto !important;
+  margin-top: 48px !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+
+mat-card,
+.txt {
+  font-family: "Nunito Sans", sans-serif !important;
+}
+
+// .nb-theme-default nb-select.appearance-outline.size-medium .select-button{
+//   background-color: inherit;
+// }

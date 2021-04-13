@@ -1,0 +1,39 @@
+<div><span class="flaticon-party1"></span><span class="title "> Update Event Images </span></div>
+
+<nb-card style="background-color: #f9f9f9 !important; border: none;">
+    <div class='row'>
+        <div class="col">
+            <div class="row">
+                <div class="col" style="margin-top: 20px;">
+                    <!-- <div class="form-group mt-1">
+                        <label for="exampleInputEmail1" class="label text-left">Event Name</label>
+                        <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                            name="EventName" [(ngModel)]="EventName" placeholder="Best Task Performer"
+                            #emailRef="ngModel" nbInput fullWidth id="exampleInputEmail1" required>
+                    </div> -->
+                    <div>
+                        <label>
+                            Event Name
+                        </label>
+                    </div>
+                    <nb-select style="background-color: #FFFFFF !important;" placeholder="Select Showcase"
+                        [(selected)]="selectedItem" fullWidth name="taskname" [(ngModel)]="taskname">
+                        <nb-option value="" *ngFor="let item of taskList" [value]="item.name">{{item.name}}
+                        </nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="margin-top: 12px;">
+                    <button style="float: right;" nbButton size="medium" class="cancel">Cancel</button>
+                    <button style="float: right;" nbButton size="medium" class="save">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="img-edit">
+                <img src="">
+            </div>
+        </div>
+    </div>
+</nb-card>
