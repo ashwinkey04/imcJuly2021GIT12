@@ -52,6 +52,12 @@ const routes: Routes = [
           import("./show/show.module").then((m) => m.ShowModule),
       },
       {
+        path: "advertisment",
+        canActivate: [AuthenticationGuard],
+        loadChildren: () =>
+          import("./advertisment/advertisment.module").then((m) => m.AdvertismentModule),
+      },
+      {
         path: "",
         redirectTo: "dashboard",
         pathMatch: "full",

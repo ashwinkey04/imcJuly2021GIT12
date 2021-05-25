@@ -12,11 +12,14 @@ import * as moment from "moment";
 })
 export class WeeklyEventEntryComponent implements OnInit {
   weeksList: Array<any> = [];
+  selectedValue: any;
   constructor(
     private httproute: Router,
     private route: ActivatedRoute,
     private http: DataserviceService
   ) { }
+  normalType:boolean;
+  numberType:boolean;
   week: any = null;
   disabled = false;
   showSpinners = true;
@@ -61,7 +64,20 @@ export class WeeklyEventEntryComponent implements OnInit {
   status1: any;
   contestants: any;
   WinnerName: any;
+  selectoptions: any = [
+    { key: 0, name: "0" },
+    { key: 1, name: "1" },
+    { key: 2, name: "2" },
+    { key: 3, name: "3" },
+    { key: 4, name: "4" },
+    { key: 5, name: "5" },
+    { key: 6, name: "6" },
+    { key: 7, name: "7" },
+    { key: 8, name: "8" },
+    { key: 9, name: "9" },
+    { key: 10, name: "10" },
 
+  ];
   Imageclick: boolean = false;
 
   taskData: any;
@@ -89,6 +105,7 @@ export class WeeklyEventEntryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.normalType = true;
     this.route.queryParams.subscribe((params) => {
       this.type = params["type"];
       this.id = params["id"];
@@ -147,10 +164,11 @@ export class WeeklyEventEntryComponent implements OnInit {
         this.status = this.taskData.data.status;
         this.flagStatus = this.taskData.data.isFeatured;
         this.WinnerName = this.taskData.data.winningContestants;
-        this.imgurl = this.http.ip() + this.taskData.data.images;
+        this.imgurl = this.http.imageip() + this.taskData.data.images;
         this.getWeek(this.taskData.data.week);
         this.notification = this.taskData.data.startNotification;
         this.notificationNativeLanguage = this.taskData.data.translation[this.language].startNotification;
+        this.selectedValue = this.taskData.data.type == undefined ? "normal":this.taskData.data.type;
         // this.notificationStop = this.taskData.data.stopNotification;
         // this.notificationStopNativeLanguage = this.taskData.data.translation[this.language].stopNotification;
       });
@@ -176,6 +194,7 @@ export class WeeklyEventEntryComponent implements OnInit {
         week: form.value.week,
         startNotification: form.value.notification,
         stopNotification: form.value.notificationStop,
+        type:this.selectedValue,
         translation: {
           name: form.value.nativeName,
           rules: form.value.nativeRules,
@@ -183,20 +202,20 @@ export class WeeklyEventEntryComponent implements OnInit {
           stopNotification: form.value.notificationStopNativeLanguage,
         },
       };
-      console.log(body);
+      console.log("body",body);
       let apibody = JSON.stringify(body);
       this.formdata.append("taskInfo", apibody);
       this.formdata.append("image", this.file1);
       this.http.post("/api/v1/task", this.formdata).subscribe(
         (data) => {
-          console.log(data.json()), (this.spinner = false);
+          console.log("data.json()",data.json()), (this.spinner = false);
           setTimeout(() => {
             this.spinner = false;
             this.httproute.navigate(["/pages/event/event-list"]);
           }, 1000);
         },
         (err) => {
-          console.log(err), (this.spinner = false);
+          console.log("err",err), (this.spinner = false);
         }
       );
     } else if (this.type == "update1") {
@@ -216,6 +235,7 @@ export class WeeklyEventEntryComponent implements OnInit {
         week: form.value.week,
         startNotification: form.value.notification,
         stopNotification: form.value.notificationStop,
+        type:this.selectedValue,
         translation: {
           name: form.value.nativeName,
           rules: form.value.nativeRules,
@@ -235,12 +255,19 @@ export class WeeklyEventEntryComponent implements OnInit {
           this.spinner = false;
           console.log(form.value.WinnerName, "3")
           if (form.value.WinnerName != null && form.value.WinnerName != undefined && form.value.WinnerName != '') {
-            console.log(form.value.WinnerName, "2")
+            console.log(form.value.WinnerName, "2");
+            console.log(form.value.WinnerName.length);
+            if(this.selectedValue == "normal"){
             if (form.value.WinnerName.length > 0) {
-              console.log(form.value.WinnerName, "1")
+              console.log(form.value.WinnerName, "1");
+              console.log(typeof(form.value.WinnerName));
+              console.log(JSON.stringify(form.value.WinnerName));
               let Winner = {
                 winningContestants: form.value.WinnerName,
               };
+              console.log("Winner");
+              console.log(Winner);
+            console.log(JSON.stringify(Winner));
               this.http
                 .post("/api/v1/task/winningcontestant?id=" + this.id, Winner).subscribe((data) => {
                   console.log(data)
@@ -249,7 +276,32 @@ export class WeeklyEventEntryComponent implements OnInit {
                     this.httproute.navigate(["/pages/event/event-list"]);
                   }, 1000);
                 })
+            }else{
+              console.log("else");
             }
+          }else{
+            if(form.value.WinnerName < this.contestants.length){
+            console.log(typeof(form.value.WinnerName));
+            let data = [];
+            for(let i=0;i<form.value.WinnerName;i++){
+              data.push(this.contestants[i]._id)
+            }
+            let Winner = {
+              winningContestants: data,
+            };
+            console.log("Winner");
+            console.log(Winner);
+            console.log(JSON.stringify(Winner));
+            this.http
+              .post("/api/v1/task/winningcontestant?id=" + this.id, Winner).subscribe((data) => {
+                console.log(data)
+                setTimeout(() => {
+                  this.spinner = false;
+                  this.httproute.navigate(["/pages/event/event-list"]);
+                }, 1000);
+              })
+          }
+        }
           } else {
             setTimeout(() => {
               this.spinner = false;
@@ -268,7 +320,23 @@ export class WeeklyEventEntryComponent implements OnInit {
       this.spinner = false;
     }
   }
+  changeEvent(event){
+    console.log(event);
+    if(event){
+      this.numberType = false;
+      this.normalType = true;
+    }
 
+  }
+  changeEvent1(event){
+    console.log(event);
+    this.selectedValue = event;
+    if(event){
+      this.numberType = true;
+    this.normalType = false;
+
+    }
+  }
   start(event) {
     this.StartDay = event;
     console.log(this.StartDay);

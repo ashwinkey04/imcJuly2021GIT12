@@ -36,6 +36,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: "/pages/show/show-list",
   },
   {
+    title: "Advertisment",
+    icon: { icon: "newspaper", pack: "flaticon" },
+    link: "/pages/advertisment/list",
+  },
+  {
     title: "Reports",
     icon: { icon: "newspaper", pack: "flaticon" },
     link: "/pages/report/report-list",

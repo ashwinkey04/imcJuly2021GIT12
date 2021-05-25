@@ -18,6 +18,6 @@ import { PDFExportModule } from "@progress/kendo-angular-pdf-export";
     MatInputModule,
     PDFExportModule,
   ],
-  declarations: [PagesComponent],
+  declarations: [PagesComponent,],
 })
 export class PagesModule {}

@@ -15,7 +15,18 @@ export class DataserviceService {
     let ipaddrs1 = "http://103.99.149.26:3250";
     let ipaddrs2 = "http://173.224.67.115:3250";
     let ipaddrs3 = "http://192.168.43.27:3250";
-    return ipaddrs2;
+    let ipaddrs4 = "https://demo.emeetify.com:82";
+    let ipaddrs5 = "https://localhost:3250";
+
+    return ipaddrs4;
+  }
+
+  imageip() {
+
+    let ipaddrs2 = "http://173.224.67.115:3250";
+    let ipaddrs4 = "https://demo.emeetify.com:82/images";
+
+    return ipaddrs4;
   }
 
   constructor(private _http: Http) {}
@@ -43,6 +54,7 @@ export class DataserviceService {
     this.eventId = localStorage.getItem("Event_Id");
     // this.token = xaccessToken;
     // console.log(this.token);
+    console.log(this.eventId);
     header.append("x-access-token", xaccessToken.token);
     header.append("app", "admin");
     // header.append("content-type", "multipart/form-data");

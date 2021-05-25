@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
   image = "images";
 
   constructor(private http: DataserviceService) {}
-  ip: any = this.http.ip();
+  // ip: any = this.http.ip();
+  ip: any = this.http.imageip();
 
   ngOnInit(): void {
     console.log("in dashboard");

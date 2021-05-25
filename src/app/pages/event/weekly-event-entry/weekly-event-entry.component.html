@@ -5,6 +5,54 @@
 
 <div class="top-padding">
   <form #TaskForm="ngForm" (ngSubmit)="Task(TaskForm)">
+<!-- newly added by prabha starts here -->
+
+<div class="custom-control custom-radio" *ngIf="type == 'create1'">
+  <input id="male" type="radio" class="custom-control-input" value="normal" name="gender" ngModel (change)="changeEvent1($event.target.value)">
+  <label class="custom-control-label" for="male">Normal</label>
+</div>
+
+<div class="custom-control custom-radio" *ngIf="type == 'create1'">
+  <input id="female" type="radio" class="custom-control-input" value="number" name="gender" ngModel (change)="changeEvent1($event.target.value)">
+  <label class="custom-control-label" for="female">Number</label>
+</div>
+<!-- <div class="row">
+  <div class="col-6 ">
+    <div class="row">
+      <div class="col">
+        <div class="form-group mt-1">
+          <label>Normal Contest <span class="caption status-danger">*</span></label>
+
+          <input type="checkbox" (change)="changeEvent1($event.target.checked)" [(ngModel)]="normalType" name="normal" checked = "normalType" >
+          <ng-container *ngIf="Name.invalid && (Name.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Task name is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 ">
+    <div class="row">
+      <div class="col">
+        <div class="form-group mt-1">
+          <label>Number Contest <span class="caption status-danger">*</span></label>
+
+          <input type="checkbox" (change)="changeEvent($event.target.checked)" [(ngModel)]="numberType" name="numbe" checked = "numberType">
+          <ng-container *ngIf="Name.invalid && (Name.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Task name is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>-->
+
+    <!-- newly added by prabha ends here -->
     <div class="row">
       <div class="col-6 ">
         <div class="row">
@@ -331,7 +379,35 @@
           </p>
         </ng-container>
       </div>
-      <div class="col-6" *ngIf="Enabled == true">
+
+ <div class="col-6" *ngIf="Enabled == true && selectedValue=='normal'">
+        <div>
+          <label>
+            Select Winner Conteatants
+          </label>
+        </div>
+        <nb-select style="background-color: #FFFFFF !important;" multiple   fullWidth
+          name="WinnerName" [(ngModel)]="WinnerName">
+          <nb-option *ngFor="let item of contestants" [value]="item._id">{{item.name}}
+          </nb-option>
+        </nb-select>
+      </div>
+
+
+         <div class="col-6" *ngIf="Enabled == true && selectedValue=='number'">
+        <div>
+          <label>
+            Select Option
+          </label>
+        </div>
+        <nb-select style="background-color: #FFFFFF !important;"  placeholder="Multiple Select" fullWidth
+          name="WinnerName" [(ngModel)]="WinnerName">
+          <nb-option *ngFor="let item of selectoptions" [value]="item.key">{{item.name}}
+          </nb-option>
+        </nb-select>
+
+      </div>
+      <!-- <div class="col-6" *ngIf="Enabled == true">
         <div>
           <label>
             Select Winner Conteatants
@@ -342,7 +418,7 @@
           <nb-option *ngFor="let item of contestants" [value]="item._id">{{item.name}}
           </nb-option>
         </nb-select>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col ">
