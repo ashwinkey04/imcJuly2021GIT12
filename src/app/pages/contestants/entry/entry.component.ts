@@ -16,6 +16,8 @@ export class EntryComponent implements OnInit {
   name: string;
   professional: string;
   biography: string;
+  fb:string;
+  twitter:string;
   name1: string;
   professional1: string;
   biography1: string;
@@ -67,6 +69,8 @@ export class EntryComponent implements OnInit {
         this.name = this.contestantsdata.name;
         this.professional = this.contestantsdata.professional;
         this.biography = this.contestantsdata.biography;
+        this.twitter = this.contestantsdata.twitter;
+        this.fb = this.contestantsdata.fb;
         this.nativelanguage = this.contestantsdata.nativeLanguage;
         this.name1 = this.contestantsdata.translation[this.nativelanguage].name;
         this.biography1 = this.contestantsdata.translation[
@@ -124,6 +128,8 @@ export class EntryComponent implements OnInit {
         name: form.value.name,
         biography: form.value.biography,
         professional: form.value.professional,
+        twitter: form.value.twitter,
+        fb: form.value.fb,
         status: form.value.status,
         translation: {
           name: form.value.name1,
@@ -156,6 +162,8 @@ export class EntryComponent implements OnInit {
         name: form.value.name,
         biography: form.value.biography,
         professional: form.value.professional,
+        twitter: form.value.twitter,
+        fb: form.value.fb,
         status: form.value.status,
         imageChanged: this.changedImage,
         translation: {
@@ -165,7 +173,9 @@ export class EntryComponent implements OnInit {
         },
       };
       let apibody = JSON.stringify(data1);
-      console.log(data1);
+
+      console.log("data==========================================>"+data1);
+
       this.formdata.append("contestantInfo", apibody);
       this.formdata.append("image", this.file1);
       this.http

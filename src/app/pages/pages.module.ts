@@ -9,6 +9,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { PDFExportModule } from "@progress/kendo-angular-pdf-export";
 
+
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -18,6 +19,6 @@ import { PDFExportModule } from "@progress/kendo-angular-pdf-export";
     MatInputModule,
     PDFExportModule,
   ],
-  declarations: [PagesComponent,],
+  declarations: [PagesComponent],
 })
 export class PagesModule {}

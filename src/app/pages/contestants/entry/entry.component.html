@@ -54,6 +54,37 @@
                                 </p>
                             </ng-container>
                         </div>
+                        <div class="form-group mt-1">
+                            <label for="TwitterField" class="label text-left">Twitter Link <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="twitter" [(ngModel)]="twitter" #twitterRef="ngModel" nbInput fullWidth id="TwitterField"
+                                required
+                                [status]="(twitterRef.dirty && twitterRef.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="twitterRef.invalid && twitterRef.touched ? true : null">
+
+                            <ng-container *ngIf="twitterRef.invalid && (twitterRef.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Twitter link is required!
+                                </p>
+                            </ng-container>
+                        </div>
+
+                        <div class="form-group mt-1">
+                            <label for="FBField" class="label text-left">Facebook Link <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="fb" [(ngModel)]="fb" #fbRef="ngModel" nbInput fullWidth id="FBField"
+                                required
+                                [status]="(fbRef.dirty && fbRef.invalid  && UpdateForm.submitted ?'danger':'') "
+                                [attr.aria-invalid]="fbRef.invalid && fbRef.touched ? true : null">
+
+                            <ng-container *ngIf="fbRef.invalid && (fbRef.dirty ||UpdateForm.submitted)">
+                                <p class="caption status-danger">
+                                    Facebook link is required!
+                                </p>
+                            </ng-container>
+                        </div>
                     </div>
 
                     <!-- native form data -->

@@ -33,7 +33,7 @@ import { DataserviceService } from "./dataservice.service";
 import { config } from "process";
 
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

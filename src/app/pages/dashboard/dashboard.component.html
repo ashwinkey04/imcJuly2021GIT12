@@ -46,7 +46,7 @@
                 <span class="flaticon-success"></span>
                 Winner
             </mat-card-header>
-            <!-- <mat-card-content style="background: url(/assets/images/card-background.png);height: 249px;background-repeat: no-repeat;  
+            <!-- <mat-card-content style="background: url(/assets/images/card-background.png);height: 249px;background-repeat: no-repeat;
                 background-size: cover ; margin-top: 24px; z-index: 1;">
                 <div class="row winner-card ">
                     <div class="col" style="margin-top: 32px; ">
@@ -116,7 +116,7 @@
             <mat-card-content *ngIf="top1players == false">
                 <p style="text-align: center; justify-content: center; margin-top: 114px;">Event not yet started</p>
             </mat-card-content>
-            <mat-card-content class="text-center" *ngIf="top1players == true" style="background: url(/assets/images/card-background.png);height: 249px;background-repeat: no-repeat;  
+            <mat-card-content class="text-center" *ngIf="top1players == true" style="background: url(/assets/images/card-background.png);height: 249px;background-repeat: no-repeat;
                 background-size: cover ; margin-top: 24px; z-index: 1;">
                 <div class="row winner-card ">
                     <div class="col">
@@ -227,7 +227,7 @@
             <mat-card-content class="contestants-list" [style.overflow]="'auto'" [style.height.px]="'250'">
                 <li class="list-1" *ngFor="let user of contestantsList;">
                     <span style="padding-left: 4px; width: 36px; height: 36px; border-radius: 50%;"
-                        class="img-responsive"><img [src]=ip+user.images alt="avatar" class="img-responsive"
+                        class="img-responsive"><img [src]=this.http.imageip()+user.images alt="avatar" class="img-responsive"
                             style="border-radius: 50%; width:36px; height: 36px; object-fit: cover;"></span>
                     <span style="padding-left: 8px;">{{user?.name}}</span>
                     <span style="float: right; padding-right: 8px; padding-top: 4px;">{{user?.percentage + "%"}}</span>

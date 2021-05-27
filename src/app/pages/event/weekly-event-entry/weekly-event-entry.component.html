@@ -1,3 +1,367 @@
+<!-- <div>
+  <span class="flaticon-calendar2"></span>
+  <span class="title">{{type == "create1" ? "Create" : "Update"}} Weekly Task</span>
+</div>
+
+<div class="top-padding">
+  <form #TaskForm="ngForm" (ngSubmit)="Task(TaskForm)">
+    <div class="row">
+      <div class="col-6 ">
+        <div class="row">
+          <div class="col">
+            <div class="form-group mt-1">
+              <label>Task Name <span class="caption status-danger">*</span></label>
+              <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth fieldSize="medium"
+                name="name" required [(ngModel)]="name" #Name="ngModel" placeholder="Enter Task Name"
+                [status]="(Name.dirty && Name.invalid  && TaskForm.submitted ?'danger':'') "
+                [attr.aria-invalid]="Name.invalid && Name.touched ? true : null">
+
+              <ng-container *ngIf="Name.invalid && (Name.dirty ||TaskForm.submitted)">
+                <p class="caption status-danger">
+                  Task name is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group mt-1">
+              <label>Rules <span class="caption status-danger">*</span></label>
+              <textarea style="background-color: #FFFFFF !important; height:100px; resize: none;" nbInput fullWidth
+                placeholder="Type rules for task" name="rules" [(ngModel)]="rules" #rule="ngModel" required
+                [status]="(rule.dirty && rule.invalid  && TaskForm.submitted ?'danger':'') "
+                [attr.aria-invalid]="rule.invalid && rule.touched ? true : null">
+                            </textarea>
+
+              <ng-container *ngIf="rule.invalid && (rule.dirty ||TaskForm.submitted)">
+                <p class="caption status-danger">
+                  Rules is required!
+                </p>
+              </ng-container>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>Please select below block to upload image</div>
+        <div class="img-edit" style="margin-top: 12px;" fullWidth>
+          <ngx-dropzone (change)="onChange($event)"
+            style="box-sizing: border-box !important; border: 1px solid #e1e1e1 !important; height: 188px;"
+            [multiple]="false" accept="image/jpeg,image/jpg,image/png,image/gif">
+            <ngx-dropzone-label *ngIf="files.length==0 && !(imgurl)">Drop it, here!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" id="image-preview"
+              [file]=" f" [removable]="true" (removed)="onRemove($event)">
+              <ngx-dropzone-label></ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+            <img *ngIf="files.length==0 && (imgurl)" style="display: block !important; margin-left: auto !important; margin-right: auto !important; height: 128px;
+                                width: 250px;" [src]="this.imgurl" class="img-response" />
+          </ngx-dropzone>
+          <ng-container *ngIf="TaskForm.submitted && type =='create1' ">
+            <p *ngIf="Imageclick == false " class="caption status-danger">
+              Please select image!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="form-group mt-1">
+          <label>Min Select Count <span class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Minimum Select Count" name="MinSelectCount" [(ngModel)]="MinSelectCount" required
+            #MinCount="ngModel" [status]="(MinCount.dirty && MinCount.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="MinCount.invalid && MinCount.touched ? true : null">
+
+          <ng-container *ngIf="MinCount.invalid && (MinCount.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Min Count is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group mt-1">
+          <label>Max Select Count <span class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Maximum Select Count" name="MaxSelectCount" [(ngModel)]="MaxSelectCount" required
+            #MaxCount="ngModel" [status]="(MaxCount.dirty && MaxCount.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="MaxCount.invalid && MaxCount.touched ? true : null">
+
+          <ng-container *ngIf="MaxCount.invalid && (MaxCount.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Max Count is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Total Change Count <span class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth fieldSize="medium"
+            placeholder="Max Change Count" name="TotalChangeCount" required [(ngModel)]="TotalChangeCount"
+            #Totalcount="ngModel"
+            [status]="(Totalcount.dirty && Totalcount.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="Totalcount.invalid && Totalcount.touched ? true : null">
+
+          <ng-container *ngIf="Totalcount.invalid && (Totalcount.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Total Change Count is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group mt-1">
+          <label>Winner Point <span class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Enter Winning Point" name="WinnerPoint" [(ngModel)]="WinnerPoint" required
+            #winnerpoint="ngModel"
+            [status]="(winnerpoint.dirty && winnerpoint.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="winnerpoint.invalid && winnerpoint.touched ? true : null">
+
+          <ng-container *ngIf="winnerpoint.invalid && (winnerpoint.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Winner Point is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group mt-1">
+          <label>Loser Point <span class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Enter Losing Point" name="LosserPoint" [(ngModel)]="LosserPoint" required
+            #losserPoint="ngModel"
+            [status]="(losserPoint.dirty && losserPoint.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="losserPoint.invalid && losserPoint.touched ? true : null">
+
+          <ng-container *ngIf="losserPoint.invalid && (losserPoint.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Losser Point is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3" style="margin-top: 4px;">
+        <label>Start Date <span class="caption status-danger">*</span></label>
+        <mat-form-field style="width: 100%;" floatLabel=never>
+          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Start date" [min]="minDate" [max]="maxDate"
+            (dateChange)="StartDate($event)" fullWidth name="startdaytime" [(ngModel)]="startdaytime" required ngModel
+            #date1="ngModel" [attr.aria-invalid]="MaxCount.invalid && MaxCount.touched ? true : null">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+            [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+            [color]="color" [enableMeridian]="enableMeridian" format="dd-MM-yyyy">
+          </ngx-mat-datetime-picker>
+          <mat-error *ngIf="date1.invalid && (date1.dirty ||TaskForm.submitted)">
+            select start date
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="col-3" style="margin-top: 4px;">
+        <label>End Date <span class="caption status-danger">*</span></label>
+        <mat-form-field style="width: 100%;" floatLabel=never>
+          <input matInput [ngxMatDatetimePicker]="picker1" placeholder="End date" [min]="startdaytime" [max]="maxDate"
+            (dateChange)="EndDate($event)" fullWidth name="enddaytime" [(ngModel)]="enddaytime" required ngModel
+            #date2="ngModel">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker1 [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+            [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+            [color]="color" [enableMeridian]="enableMeridian" format="dd-MM-yyyy">
+          </ngx-mat-datetime-picker>
+          <mat-error *ngIf="date2.invalid && (date2.dirty ||TaskForm.submitted)">
+            Select end date
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col" style="margin-top: 4px;">
+        <div>
+          <label>select status</label>
+        </div>
+        <nb-select name="status" [(ngModel)]="status" [(selected)]="selectedItem"
+          (selectedChange)="selectionItem($event)" fullWidth>
+          <nb-option *ngFor="let item of viewStatus" [value]="item.name">
+            {{item.name | titlecase}}
+          </nb-option>
+        </nb-select>
+
+      </div>
+      <div class="col">
+        <div>
+          <label>Is Featured</label>
+        </div>
+        <nb-toggle name="flagStatus" [(ngModel)]="flagStatus" #status1Ref="ngModel" required></nb-toggle>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Task Name in Native Language <span class="caption status-danger">*</span></label>
+          <textarea style="background-color: #FFFFFF !important; height:100px; resize: none;" nbInput fullWidth
+            placeholder="Enter name in native language" name="nativeName" [(ngModel)]="nativeName"
+            #nativeNameField="ngModel" required
+            [status]="(nativeNameField.dirty && nativeNameField.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="nativeNameField.invalid && nativeNameField.touched ? true : null">
+                </textarea>
+
+          <ng-container *ngIf="nativeNameField.invalid && (nativeNameField.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Task Name in native Language Count is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Rules in Native Language <span class="caption status-danger">*</span></label>
+          <textarea style="background-color: #FFFFFF !important; height:100px; resize: none;" nbInput fullWidth
+            placeholder="Type rules for task in native language" name="nativeRules" [(ngModel)]="nativeRules"
+            #rulenative="ngModel" required
+            [status]="(rulenative.dirty && rulenative.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="rulenative.invalid && rulenative.touched ? true : null">
+                    </textarea>
+
+          <ng-container *ngIf="rulenative.invalid && (rulenative.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Rules is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Notification (Notification for start task in english language)<span
+              class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Enter Notification" name="notification" [(ngModel)]="notification" required
+            #notificationRef="ngModel"
+            [status]="(notificationRef.dirty && notificationRef.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="notificationRef.invalid && notificationRef.touched ? true : null">
+
+          <ng-container *ngIf="notificationRef.invalid && (notificationRef.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Enter the notification for start task.
+            </p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Notification (Notification for start task in native language)<span
+              class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Enter Notification in native language" name="notificationNativeLanguage"
+            [(ngModel)]="notificationNativeLanguage" required #notificationNativeLanguageRef="ngModel"
+            [status]="(notificationNativeLanguageRef.dirty && notificationNativeLanguageRef.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="notificationNativeLanguageRef.invalid && notificationNativeLanguageRef.touched ? true : null">
+
+          <ng-container
+            *ngIf="notificationNativeLanguageRef.invalid && (notificationNativeLanguageRef.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Enter the notification for start task in native language!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row"> -->
+      <!-- comment below -->
+      <!-- <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Notification (Notification for stop task in english language)<span
+              class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Enter Notification" name="notificationStop" [(ngModel)]="notificationStop" required
+            #notificationStopRef="ngModel"
+            [status]="(notificationStopRef.dirty && notificationStopRef.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="notificationStopRef.invalid && notificationStopRef.touched ? true : null">
+
+          <ng-container *ngIf="notificationStopRef.invalid && (notificationStopRef.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Enter the notification for stop task !
+            </p>
+          </ng-container>
+        </div>
+      </div> -->
+      <!-- <div class="col-6">
+        <div class="form-group mt-1">
+          <label>Notification (Notification for stop task in native language)<span
+              class="caption status-danger">*</span></label>
+          <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+            placeholder="Enter Notification in native language" name="notificationStopNativeLanguage"
+            [(ngModel)]="notificationStopNativeLanguage" required #notificationStopNativeLanguageRef="ngModel"
+            [status]="(notificationStopNativeLanguageRef.dirty && notificationStopNativeLanguageRef.invalid  && TaskForm.submitted ?'danger':'') "
+            [attr.aria-invalid]="notificationStopNativeLanguageRef.invalid && notificationStopNativeLanguageRef.touched ? true : null">
+
+          <ng-container
+            *ngIf="notificationStopNativeLanguageRef.invalid && (notificationStopNativeLanguageRef.dirty ||TaskForm.submitted)">
+            <p class="caption status-danger">
+              Enter the notification for stop in native language!
+            </p>
+          </ng-container>
+        </div>
+      </div> -->
+
+
+      <!-- comment abouve -->
+
+    <!-- </div>
+    <div class="row">
+      <div class="col-6">
+        <div>
+          <label>Select Week <span class="caption status-danger">*</span></label>
+        </div>
+        <nb-select name="week" [(ngModel)]="week" #weekRef="ngModel" fullWidth required>
+          <nb-option *ngFor="let item of weeksList" [value]="item">
+            {{item | titlecase}}
+          </nb-option>
+        </nb-select>
+        <ng-container *ngIf="weekRef.invalid && (weekRef.dirty ||TaskForm.submitted)">
+          <p class="caption status-danger">
+            Please select week.
+          </p>
+        </ng-container>
+      </div>
+      <div class="col-6" *ngIf="Enabled == true">
+        <div>
+          <label>
+            Select Winner Conteatants
+          </label>
+        </div>
+        <nb-select style="background-color: #FFFFFF !important;" multiple placeholder="Multiple Select" fullWidth
+          name="WinnerName" [(ngModel)]="WinnerName">
+          <nb-option *ngFor="let item of contestants" [value]="item._id">{{item.name}}
+          </nb-option>
+        </nb-select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col ">
+        <button nbButton size="medium" type="reset" class="cancel position"
+          routerLink='/pages/event/event-list'>Cancel</button>
+        <button nbButton size="medium" type="submit" class="save position" [disabled]="spinner" [nbSpinner]="spinner"
+          nbSpinnerStatus="primary" nbSpinnerSize="xsmall">{{type
+          =="create1" ? "Create" :
+          "Update"}}</button>
+      </div>
+    </div>
+  </form>
+</div> -->
+
+
 <div>
   <span class="flaticon-calendar2"></span>
   <span class="title">{{type == "create1" ? "Create" : "Update"}} Weekly Task</span>

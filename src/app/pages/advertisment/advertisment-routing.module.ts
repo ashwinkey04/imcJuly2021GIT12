@@ -1,8 +1,9 @@
-import { CreateComponent } from './create/create.component';
-import { ListComponent } from './list/list.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdvertismentComponent } from './advertisment.component';
+import { AdvertismentComponent } from "./advertisment.component";
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { EntryAdvertismentComponent } from "./entry/entryAdvertisment.component";
+import { ListAdvertismentComponent } from "./list/listAdvertisment.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -10,11 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: "list",
-        component: ListComponent,
+        component: ListAdvertismentComponent,
       },
       {
-        path: "create",
-        component: CreateComponent,
+        path: "entry",
+        component: EntryAdvertismentComponent,
       },
       {
         path: "",
@@ -31,6 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdvertismentRoutingModule { }
+export class AdvertismentRoutingModule {}

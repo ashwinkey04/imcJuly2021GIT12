@@ -1,0 +1,76 @@
+.top-txt {
+  font-size: 25px;
+  font-weight: 600;
+  // font-family: "Proxima Nova";
+  margin-left: 6px;
+}
+
+.img-edit {
+  // object-fit: cover;
+  height: 170px;
+  width: 160px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  margin-top: 48px;
+}
+
+.file-select {
+  color: #f96368 !important;
+  margin-top: 6px;
+  font-size: 18px;
+  // font-family: "Proxima Nova";
+  position: absolute;
+  left: 17%;
+  cursor: pointer;
+}
+
+.top-spacing {
+  margin-top: 24px;
+}
+
+label {
+  font-size: 16px !important;
+  // font-family: "Proxima Nova" !important;
+  color: #040404 !important;
+  font-weight: 100 !important;
+}
+
+.save {
+  display: inline-block;
+  width: 131px;
+  height: 50px;
+  background-color: #1d3c7f !important;
+  color: white !important;
+  font-size: 16px;
+  font-family: "Proxima";
+  padding: 16px;
+  padding-left: 44px;
+  margin-right: 12px;
+}
+
+.cancel {
+  display: inline-block;
+  width: 131px;
+  height: 50px;
+  background-color: #f96368 !important;
+  color: white !important;
+  font-size: 16px;
+  // font-family: "Proxima";
+  padding: 16px;
+  padding-left: 44px;
+}
+
+// ::ng-deep .nb-theme-default nb-toggle.status-basic .toggle.checked {
+//   background-color: #1d3c7f !important;
+//   border-color: #1d3c7f !important;
+//   width: 5.125rem !important;
+// }
+
+// ::ng-deep .nb-theme-default nb-toggle .toggle {
+//   width: 5.125rem !important;
+// }
+
+#image-preview {
+  height: 160px !important;
+  width: 140px !important;
+}

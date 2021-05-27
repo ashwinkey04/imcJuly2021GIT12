@@ -1,27 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { AdvertismentRoutingModule } from './advertisment-routing.module';
-import { AdvertismentComponent } from './advertisment.component';
-import { ListComponent } from './list/list.component';
-import { CreateComponent } from './create/create.component';
-
-
-// @NgModule({
-//   declarations: [AdvertismentComponent, ListComponent, CreateComponent],
-//   imports: [
-//     CommonModule,
-//     AdvertismentRoutingModule
-//   ]
-// })
-// export class AdvertismentModule { }
-
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { MatTableModule } from "@angular/material/table";
 import { RouterModule } from "@angular/router";
 
-
+import { AdvertismentRoutingModule } from "./advertisment-routing.module";
+ import { ListAdvertismentComponent } from "./list/listAdvertisment.component";
+ import { EntryAdvertismentComponent } from "./entry/entryAdvertisment.component";
+import { AdvertismentComponent } from "./advertisment.component";
 import { HttpClientModule } from "@angular/common/http";
 import { HttpModule } from "@angular/http";
 
@@ -53,7 +38,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { ThemeModule } from "app/@theme/theme.module";
 
 @NgModule({
-  declarations: [ListComponent, CreateComponent, AdvertismentComponent],
+  declarations: [ ListAdvertismentComponent, EntryAdvertismentComponent,AdvertismentComponent],
   imports: [
     CommonModule,
     AdvertismentRoutingModule,
@@ -87,4 +72,3 @@ import { ThemeModule } from "app/@theme/theme.module";
   ],
 })
 export class AdvertismentModule {}
-

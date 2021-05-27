@@ -66,7 +66,8 @@ export class ListComponent implements OnInit {
     private route: Router
   ) {}
   active: string = "active";
-  ip: any = this.http.imageip();
+  ip: any = this.http.ip();
+  imageip: any = this.http.ip()+"/images";
   ngOnInit(): void {
     this.contestantsList();
   }
