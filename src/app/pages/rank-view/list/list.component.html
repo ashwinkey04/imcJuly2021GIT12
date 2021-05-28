@@ -49,6 +49,23 @@
               <td mat-cell *matCellDef="let element" style="width: 10% !important; text-align: center; ">
                   {{element.no_of_players}} </td>
           </ng-container>
+          <ng-container matColumnDef="Players">
+            <th mat-header-cell style="width: 10% !important; " *matHeaderCellDef
+                style="color:white;text-align: center;"> Winners Name </th>
+            <td mat-cell *matCellDef="let element" style="width: 10% !important; text-align: center; ">
+              <li style="text-align: left;" *ngFor="let Winners of element.players;">
+                {{Winners.name}}
+            </li></td>
+        </ng-container>
+        <ng-container matColumnDef="PlayersEmail">
+          <th mat-header-cell style="width: 10% !important; " *matHeaderCellDef
+              style="color:white;text-align: center;"> Winners Email </th>
+          <td mat-cell *matCellDef="let element" style="width: 10% !important; text-align: center; ">
+            <li style="text-align: left;" *ngFor="let Winners of element.players;">
+             {{Winners.email}}
+          </li></td>
+      </ng-container>
+
 <!--
               <ng-container matColumnDef="image">
                   <th style="width: 20% !important;" mat-header-cell *matHeaderCellDef style="color:white"> Image

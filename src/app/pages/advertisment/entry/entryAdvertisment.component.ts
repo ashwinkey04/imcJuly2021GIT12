@@ -57,8 +57,8 @@ export class EntryAdvertismentComponent implements OnInit {
     { key: 4, name: "Select Contestant - Task play" },
     { key: 5, name: "Task screen" },
     { key: 6, name: "Profile" },
-    { key: 7, name: "Page 5" },
-    { key: 8, name: "Page 6" },
+    { key: 7, name: "Home Page PopUP" },
+    { key: 8, name: "Dashboard PopUP" },
   ];
 
   files: File[] = [];

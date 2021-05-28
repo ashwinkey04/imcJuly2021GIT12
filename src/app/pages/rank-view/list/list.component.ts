@@ -125,6 +125,8 @@ export class ListComponent implements OnInit {
     "Rank",
     "TotalPoints",
     "UserCount",
+    "Players",
+    "PlayersEmail",
   ];
 
   changeDate(event) {
