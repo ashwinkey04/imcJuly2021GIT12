@@ -86,13 +86,19 @@
             <ng-container matColumnDef="Winner_Name">
                 <th mat-header-cell *matHeaderCellDef style="color:white"> Winner Name </th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.winningContestants.length == 0">
+                    <span *ngIf="element.type == 'normal' &&element.winningContestants.length == 0">
                         <span>Not Yet Revealed</span>
                     </span>
+                    <span *ngIf="element.type == 'number' &&element.noOfContestants == undefined">
+                      <span>Not Yet Revealed</span>
+                  </span>
                     <span *ngIf="element.winningContestants.length ==! 0"></span>
                     <li *ngFor="let Winners of element.winningContestants;">
                         {{Winners.name}}
                     </li>
+                    <span *ngIf="element.type == 'number' &&element.noOfContestants != undefined">
+                      <span>{{element.noOfContestants}}</span>
+                  </span>
                 </td>
             </ng-container>
 
