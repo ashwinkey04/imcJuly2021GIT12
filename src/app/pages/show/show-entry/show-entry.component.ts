@@ -160,9 +160,9 @@ export class ShowEntryComponent implements OnInit {
       this.nativeRules = data1.data.translation.rules;
       this.nativeDescription = data1.data.translation.description;
       this.status = data1.data.status == "active" ? true : false;
-      this.imgurl = this.http.ip() + data1.data.banner;
+      this.imgurl = this.http.imageip() + data1.data.banner;
       this.lanDropdown = data1.data.language[1];
-      this.logourl = this.http.ip() + data1.data.logo;
+      this.logourl = this.http.imageip() + data1.data.logo;
     });
   }
 

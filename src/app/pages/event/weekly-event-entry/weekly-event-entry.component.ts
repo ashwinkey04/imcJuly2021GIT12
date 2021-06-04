@@ -482,6 +482,7 @@ export class WeeklyEventEntryComponent implements OnInit {
         this.selectedValue = this.taskData.data.type == undefined ? "normal":this.taskData.data.type;
         // this.notificationStop = this.taskData.data.stopNotification;
         // this.notificationStopNativeLanguage = this.taskData.data.translation[this.language].stopNotification;
+        this.status1 = this.status;
       });
   }
 
@@ -660,15 +661,17 @@ export class WeeklyEventEntryComponent implements OnInit {
   }
 
   onChange(event) {
-    if ((this.type = "create1")) {
+    console.log(this.type);
+    if ((this.type == "create1")) {
       this.Imageclick = true;
     }
-    console.log(event);
+    console.log("event",event);
     this.files.push(...event.addedFiles);
 
     this.changedImage = true;
     this.file1 = event.addedFiles[0];
     console.log(this.file1);
+    console.log(this.type);
   }
 
   onRemove(event) {
