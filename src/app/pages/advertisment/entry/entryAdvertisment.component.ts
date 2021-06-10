@@ -51,14 +51,26 @@ export class EntryAdvertismentComponent implements OnInit {
   ];
   viewPage: any[] = [
     { key: 0, name: "Please select the Advertisment Screen" },
-    { key: 1, name: "Home" },
-    { key: 2, name: "Dashboard" },
-    { key: 3, name: "Favourite-choose" },
-    { key: 4, name: "Select Contestant - Task play" },
-    { key: 5, name: "Task screen" },
-    { key: 6, name: "Profile" },
-    { key: 7, name: "Home Page PopUP" },
-    { key: 8, name: "Dashboard PopUP" },
+    { key: 1, name: "Home - Center Left" },
+    { key: 2, name: "Home - Bottom" },
+    { key: 3, name: "Home - Top Right" },
+    { key: 4, name: "Dashboard - Top Right -1" },
+    { key: 5, name: "Dashboard - Top Right -2" },
+    { key: 6, name: "Dashboard - Top Right -3" },
+    { key: 7, name: "Dashboard - Bottom" },
+    { key: 8, name: "Favourite-choose - Bottom Left" },
+    { key: 9, name: "Select Contestant - Task play - Bottom Left" },
+    { key: 10, name: "Task screen - Left" },
+    { key: 11, name: "Task screen - Right" },
+    { key: 12, name: "Profile - Top Right" },
+    { key: 13, name: "Home Page PopUp" },
+    { key: 14, name: "Dashboard PopUp" },
+    { key: 15, name: "Home Page video-basic" },
+    { key: 16, name: "Dashboard video-basic" },
+    { key: 17, name: "Home Page video-youtube" },
+    { key: 18, name: "Dashboard video-youtube" },
+    { key: 19, name: "Claim After" },
+    { key: 20, name: "Claim Before" },
   ];
 
   files: File[] = [];
@@ -133,7 +145,7 @@ export class EntryAdvertismentComponent implements OnInit {
     if (this.type == "create") {
       let body: any = {
         name: form.value.name,
-        position: this.position,
+        position: "0",
         page: this.page,
         // adcount: form.value.adcount,
         adcount:"1",

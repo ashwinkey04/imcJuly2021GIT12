@@ -24,14 +24,10 @@
                                 </p>
                             </ng-container>
                         </div>
-                        <div class="form-group mt-1">
+                        <!-- <div class="form-group mt-1">
                             <label for="ProfessionalFiled" class="label text-left">Position <span
                                     class="caption status-danger">*</span></label>
-                            <!-- <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
-                                name="position" [(ngModel)]="position" #professionRef="ngModel" nbInput
-                                fullWidth id="ProfessionalField" required
-                                [status]="(professionRef.dirty && professionRef.invalid  && UpdateForm.submitted ?'danger':'') "
-                                [attr.aria-invalid]="professionRef.invalid && professionRef.touched ? true : null"> -->
+
                                 <span>
                                     <nb-select name="position" [(ngModel)]="positionname" #positionnameRef="ngModel" [(selected)]="selectedItem" (selectedChange)="selectionItem($event)" fullWidth>
                                         <nb-option *ngFor="let item of viewposition" [value]="item.key">
@@ -44,7 +40,7 @@
                                     Position is required!
                                 </p>
                             </ng-container>
-                        </div>
+                        </div> -->
 
                         <div class="form-group mt-1">
                             <label for="ProfessionalFiled" class="label text-left">Page <span

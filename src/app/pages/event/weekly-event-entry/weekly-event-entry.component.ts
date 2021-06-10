@@ -480,8 +480,8 @@ export class WeeklyEventEntryComponent implements OnInit {
         this.notification = this.taskData.data.startNotification;
         this.notificationNativeLanguage = this.taskData.data.translation[this.language].startNotification;
         this.selectedValue = this.taskData.data.type == undefined ? "normal":this.taskData.data.type;
-        // this.notificationStop = this.taskData.data.stopNotification;
-        // this.notificationStopNativeLanguage = this.taskData.data.translation[this.language].stopNotification;
+        this.notificationStop = this.taskData.data.stopNotification;
+        this.notificationStopNativeLanguage = this.taskData.data.translation[this.language].stopNotification;
         this.status1 = this.status;
       });
   }
@@ -585,7 +585,41 @@ export class WeeklyEventEntryComponent implements OnInit {
                   console.log(data)
                   setTimeout(() => {
                     this.spinner = false;
+                    let data1: any = {
+                      name: form.value.name,
+                      totalChangesAccept: form.value.TotalChangeCount,
+                      maxContestants: form.value.MaxSelectCount,
+                      minContestants: form.value.MinSelectCount,
+                      startAt: this.startdaytime,
+                      endAt: this.enddaytime,
+                      imageChanged: this.changedImage,
+                      pointToAdd: form.value.WinnerPoint,
+                      pointToRemove: form.value.LosserPoint,
+                      rules: form.value.rules,
+                      status: "Completed",
+                      isFeatured: form.value.flagStatus,
+                      week: form.value.week,
+                      startNotification: form.value.notification,
+                      stopNotification: form.value.notificationStop,
+                      type:this.selectedValue,
+                      translation: {
+                        name: form.value.nativeName,
+                        rules: form.value.nativeRules,
+                        startNotification: form.value.notificationNativeLanguage,
+                        stopNotification: form.value.notificationStopNativeLanguage,
+                      },
+                    };
+                    console.log(data1);
+                    let apibody = JSON.stringify(data1);
+                    // console.log(data1);
+                    this.formdata.append("taskInfo", apibody);
+                    this.formdata.append("image", this.file1);
+
+                    this.http.put("/api/v1/task?id=" + this.id, this.formdata).subscribe(
+                      (data) => {
                     this.httproute.navigate(["/pages/event/event-list"]);
+
+                      });
                   }, 1000);
                 })
             }else{
@@ -610,7 +644,41 @@ export class WeeklyEventEntryComponent implements OnInit {
                 console.log(data)
                 setTimeout(() => {
                   this.spinner = false;
+                  let data1: any = {
+                    name: form.value.name,
+                    totalChangesAccept: form.value.TotalChangeCount,
+                    maxContestants: form.value.MaxSelectCount,
+                    minContestants: form.value.MinSelectCount,
+                    startAt: this.startdaytime,
+                    endAt: this.enddaytime,
+                    imageChanged: this.changedImage,
+                    pointToAdd: form.value.WinnerPoint,
+                    pointToRemove: form.value.LosserPoint,
+                    rules: form.value.rules,
+                    status: "Completed",
+                    isFeatured: form.value.flagStatus,
+                    week: form.value.week,
+                    startNotification: form.value.notification,
+                    stopNotification: form.value.notificationStop,
+                    type:this.selectedValue,
+                    translation: {
+                      name: form.value.nativeName,
+                      rules: form.value.nativeRules,
+                      startNotification: form.value.notificationNativeLanguage,
+                      stopNotification: form.value.notificationStopNativeLanguage,
+                    },
+                  };
+                  console.log(data1);
+                  let apibody = JSON.stringify(data1);
+                  // console.log(data1);
+                  this.formdata.append("taskInfo", apibody);
+                  this.formdata.append("image", this.file1);
+
+                  this.http.put("/api/v1/task?id=" + this.id, this.formdata).subscribe(
+                    (data) => {
                   this.httproute.navigate(["/pages/event/event-list"]);
+
+                    });
                 }, 1000);
               })
           }

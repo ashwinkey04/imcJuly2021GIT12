@@ -1,22 +1,41 @@
 <div><span class="flaticon-user"></span><span class="title">Update Players</span></div>
 
 <!-- Players View Form -->
+<form #TaskForm="ngForm" (ngSubmit)="playersUpdate(TaskForm)">
 <div class="row">
     <div class="col">
         <span>Name</span>
-        <span class="right">:{{PlayerInfo?.name}}</span>
+        <!-- <span class="right">:{{PlayerInfo?.name}}</span> -->
+        <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+        placeholder="Enter Notification in native language" name="name"
+        [(ngModel)]="name" required #nameRef="ngModel"
+        [status]="(nameRef.dirty && nameRef.invalid  && TaskForm.submitted ?'danger':'') "
+        [attr.aria-invalid]="nameRef.invalid && nameRef.touched ? true : null">
     </div>
+
 </div>
 <div class="row">
-    <div class="col">
+    <div class="col - 8">
         <span>User Name</span>
-        <span class="right">:{{PlayerInfo?.userName}}</span>
+        <!-- <span class="right">:{{PlayerInfo?.userName}}</span>
+         -->
+         <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+        placeholder="Enter Notification in native language" name="username"
+        [(ngModel)]="username" required #usernameRef="ngModel"
+        [status]="(usernameRef.dirty && usernameRef.invalid  && TaskForm.submitted ?'danger':'') "
+        [attr.aria-invalid]="usernameRef.invalid && usernameRef.touched ? true : null">
     </div>
 </div>
 <div class="row">
     <div class="col">
         <span>Mail Id</span>
-        <span class="right">:{{PlayerInfo?.email}}</span>
+        <!-- <span class="right">:{{PlayerInfo?.email}}</span>
+         -->
+         <input style="background-color: #FFFFFF !important;" type="text" nbInput fullWidth
+        placeholder="Enter Notification in native language" name="email"
+        [(ngModel)]="email" required #emailRef="ngModel"
+        [status]="(emailRef.dirty && emailRef.invalid  && TaskForm.submitted ?'danger':'') "
+        [attr.aria-invalid]="emailRef.invalid && emailRef.touched ? true : null">
     </div>
 </div>
 <div class="row" *ngIf="PlayerInfo.city != null">
@@ -54,6 +73,8 @@
 </div>
 
 <span style=" margin-left: 10%; ">
-    <button nbButton size="medium" type="submit" class="save" (click)="playersUpdate()">Save</button>
+    <!-- <button nbButton size="medium" type="submit" class="save" (click)="playersUpdate()">Save</button> -->
+    <button nbButton size="medium" type="submit" class="save" [disabled]='!TaskForm.valid' >Save</button>
     <button nbButton size="medium" type="reset" routerLink='/pages/players/players-list' class="cancel">Cancel</button>
 </span>
+</form>

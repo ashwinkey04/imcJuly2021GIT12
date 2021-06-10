@@ -139,6 +139,7 @@ export class EventListComponent implements OnInit {
       )
       .subscribe((data) => {
         let data1 = data.json();
+        console.log(data1);
         this.taskList = data1.taskList;
         this.datasource = new MatTableDataSource<PeriodicElement1>(
           this.taskList
