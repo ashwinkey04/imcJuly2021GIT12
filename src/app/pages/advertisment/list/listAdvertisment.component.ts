@@ -100,7 +100,7 @@ export class ListAdvertismentComponent implements OnInit {
     private route: Router
   ) {}
   active: string = "active";
-  ip: any = this.http.ip();
+  ip: any = this.http.imageip();
   ngOnInit(): void {
     this.advertismentsList();
   }

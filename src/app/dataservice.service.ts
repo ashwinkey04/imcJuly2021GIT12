@@ -17,14 +17,20 @@ export class DataserviceService {
 
     let ipaddrs3 = "https://demo.emeetify.com:82";
     let ipaddrs4 = "http://localhost:3250";
-    return ipaddrs3;
+    let ipaddrs5 = "http://173.224.67.112:8000";
+    // return ipaddrs2;
+    // return ipaddrs3;
+    return ipaddrs5;
   }
   imageip() {
 
     let ipaddrs2 = "http://173.224.67.115:3250";
     let ipaddrs4 = "https://demo.emeetify.com:82/images";
+    let ipaddrs3 = "http://173.224.67.112:8000";
 
-    return ipaddrs4;
+    // return ipaddrs2;
+    // return ipaddrs4;
+    return ipaddrs3;
   }
 
   constructor(private _http: Http) {}

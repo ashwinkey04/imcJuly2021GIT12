@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
   login(form: NgForm) {
     console.log(form.value);
     this._http
-      .post("https://demo.emeetify.com:82/api/v1/admin/login", form.value)
+    .post(this.http.ip()+"/api/v1/admin/login", form.value)
+      // .post("https://demo.emeetify.com:82/api/v1/admin/login", form.value)
       .subscribe(
         (data) => {
           //console.log(data);
