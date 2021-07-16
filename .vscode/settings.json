@@ -1,4 +1,6 @@
 {
     "typescript.tsdk": "./node_modules/typescript/lib",
-    "tslint.enable": false
+    "tslint.enable": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/7f858a8e-cb6b-4f64-bff8-e389160c3ca7/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/imc-admin",
+    "appService.deploySubpath": "."
 }
