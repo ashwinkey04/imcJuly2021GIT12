@@ -18,6 +18,7 @@ export class DataserviceService {
     let ipaddrs3 = "https://demo.emeetify.com:82";
     let ipaddrs4 = "http://localhost:3250";
     let ipaddrs5 = "http://173.224.67.112:8000";
+    let azureIp = "https://imc-backend.azurewebsites.net/";
     // return ipaddrs2;
     // return ipaddrs3;
     return ipaddrs5;
