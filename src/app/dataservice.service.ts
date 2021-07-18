@@ -18,10 +18,9 @@ export class DataserviceService {
     let ipaddrs3 = "https://demo.emeetify.com:82";
     let ipaddrs4 = "http://localhost:3250";
     let ipaddrs5 = "http://173.224.67.112:8000";
-    let azureIp = "https://imc-backend.azurewebsites.net/";
     // return ipaddrs2;
-    // return ipaddrs3;
-    return ipaddrs5;
+    return ipaddrs3;
+    // return ipaddrs5;
   }
   imageip() {
 
@@ -30,8 +29,8 @@ export class DataserviceService {
     let ipaddrs3 = "http://173.224.67.112:8000";
 
     // return ipaddrs2;
-    // return ipaddrs4;
-    return ipaddrs3;
+    return ipaddrs4;
+    // return ipaddrs3;
   }
 
   constructor(private _http: Http) {}
