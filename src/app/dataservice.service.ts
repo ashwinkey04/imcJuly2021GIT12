@@ -15,7 +15,7 @@ export class DataserviceService {
     let ipaddrs1 = "http://103.99.149.26:3250";
     let ipaddrs2 = "http://173.224.67.115:3250";
 
-    let ipaddrs3 = "https://demo.emeetify.com:82";
+    let ipaddrs3 = "https://imcappbackend.herokuapp.com/";
     let ipaddrs4 = "http://localhost:3250";
     let ipaddrs5 = "http://173.224.67.112:8000";
     let azureIp = "https://imc-backend.azurewebsites.net/";
