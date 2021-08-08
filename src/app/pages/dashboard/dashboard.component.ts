@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DataserviceService } from "../../dataservice.service";
+import { NgForm } from "@angular/forms";
+
 declare var $: any;
 
 @Component({
@@ -15,16 +17,41 @@ export class DashboardComponent implements OnInit {
   tasklist: any;
   contestantsList: any;
   titledata: any;
+  welcomeMsg: string;
   images: any[] = [];
   image = "images";
+  formdata = new FormData();
 
   constructor(private http: DataserviceService) {}
   ip: any = this.http.ip();
 
+
   ngOnInit(): void {
-    console.log("in dashboard");
     this.get();
+    //this.eventList();
   }
+
+  showform(form: NgForm) {
+    console.log(form.value);
+      let body: any = {
+        name: form.value.welcomeMsg,
+      };
+      console.log(body);
+      let apibody = JSON.stringify(body);
+      this.formdata.append("welcomeMSg", apibody);
+      this.http
+        .put("/api/v1/welcome/update?id=61014ce5926661823ec59481", this.formdata)
+        .subscribe(
+          (data) => {
+            console.log(data);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+  }
+
+  
 
   get() {
     //Task List
@@ -57,6 +84,11 @@ export class DashboardComponent implements OnInit {
       this.titledata = data.json();
     });
 
+    this.http.get("/api/v1/welcome").subscribe((data)=> {
+      let data1 = data.json();
+      this.welcomeMsg = data1.data.message;
+    })
+
     //top 3 players
     this.http.get("/api/v1/top3/ranking").subscribe((data) => {
       let data1 = data.json();
@@ -66,6 +98,12 @@ export class DashboardComponent implements OnInit {
       console.log(this.top1players);
       this.top3players = data1.rankingList;
       console.log(this.top3players);
+    });
+
+    this.http.get("/api/v1/wwelcome").subscribe((data) => {
+      let data1 = data.json();
+      console.log(this.top1players);
+      this.welcomeMsg = data1.welcomeMsg;
     });
 
     this.http.get("/api/v1/top10/ranking").subscribe((data) => {

@@ -26,6 +26,47 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                        <!-- <nb-toggle></nb-toggle> -->
+                        <div class="mt-3">
+                            <div class="form-group mt-1">
+                                <label for="CountryField" class="label text-left">Country <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="countryName" [(ngModel)]="countryName" #countryNameRef="ngModel" nbInput fullWidth
+                                id="CountryField" required
+                                [status]="(countryNameRef.dirty && countryNameRef.invalid  && show.submitted ?'danger':'') "
+                                [attr.aria-invalid]="countryNameRef.invalid && countryNameRef.touched ? true : null">
+                            <ng-container *ngIf="countryNameRef.invalid && (countryNameRef.dirty ||show.submitted)">
+                                <p class="caption status-danger">
+                                    Country Name is required!
+                                </p>
+                            </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- <nb-toggle></nb-toggle> -->
+                        <div class="mt-3">
+                            <div class="form-group mt-1">
+                                <label for="favCountField" class="label text-left">Favourtie Count <span
+                                    class="caption status-danger">*</span></label>
+                            <input style="background-color: #ffffff; border: 0.5px solid #e1e1e1;" type="text"
+                                name="favCount" [(ngModel)]="favCount" #favCountRef="ngModel" nbInput fullWidth
+                                id="favCountField" required
+                                [status]="(favCountRef.dirty && favCountRef.invalid  && show.submitted ?'danger':'') "
+                                [attr.aria-invalid]="favCountRef.invalid && favCountRef.touched ? true : null">
+                            <ng-container *ngIf="favCountRef.invalid && (favCountRef.dirty ||show.submitted)">
+                                <p class="caption status-danger">
+                                    Favourtie Count is required!
+                                </p>
+                            </ng-container>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -52,7 +93,7 @@
             </div>
         </div>
         <div class="col-6">
-            <div>Please select bellow block to upload Image.!!</div>
+            <div>Please select below block to upload Image.!!</div>
             <div class="img-edit" fullWidth>
                 <ngx-dropzone (change)="onChange($event)"
                     style="box-sizing: border-box !important; border: 1px solid #e1e1e1 !important; height: 165px;"
@@ -86,7 +127,7 @@
             </mat-form-field>
         </div>
         <div class="col-3" style="margin-top: 25px;">
-            <label>Start Date <span class="caption status-danger">*</span></label>
+            <label>End Date <span class="caption status-danger">*</span></label>
             <mat-form-field style="width: 100%;" floatLabel=never>
                 <input matInput [ngxMatDatetimePicker]="picker1" placeholder="Choose a date" [min]="minDate"
                     [max]="maxDate" (dateChange)="EndDate($event)" fullWidth name="enddaytime" [(ngModel)]="enddaytime"
@@ -101,12 +142,13 @@
                 </mat-error>
             </mat-form-field>
         </div>
+        
 
         <!-- <div classs="col-2">
         </div> -->
 
         <div class="col">
-            <div>Please select bellow block to upload Logo.!!</div>
+            <div>Please select below block to upload Logo.!!</div>
             <div class="logo-edit">
                 <ngx-dropzone (change)="onLogoChange($event)"
                     style="border: none; height: 100px !important; width: 250px !important;" [multiple]="false"
@@ -121,8 +163,23 @@
                 </ngx-dropzone>
             </div>
         </div>
+        <div class="col">
+            <div>Please select below block to upload User Frame.!!</div>
+            <div class="logo-edit">
+                <ngx-dropzone (change)="onFrameChange($event)"
+                    style="border: none; height: 100px !important; width: 250px !important;" [multiple]="false"
+                    accept="image/jpeg,image/jpg,image/png,image/gif">
+                    <ngx-dropzone-label *ngIf="files.length==0 && !(frameurl)">Drop it, here!</ngx-dropzone-label>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files2" [file]="f"
+                        [removable]="true" (removed)="onRemove($event)">
+                        <ngx-dropzone-label></ngx-dropzone-label>
+                    </ngx-dropzone-image-preview>
+                    <img *ngIf="files2.length==0 && (frameurl)" [src]="this.frameurl" style="display: block !important; margin-left: auto !important; margin-right: auto !important;height: 90px;
+                    width: 100px;" class="img-response" />
+                </ngx-dropzone>
+            </div>
+        </div>
     </div>
-
     <div class="row">
         <div class="col">
             <div class="form-group mt-1">
@@ -214,13 +271,20 @@
                 </ng-container>
             </div>
         </div>
-        <div class="col">
+        <div class="col-2">
             <div>
                 <label><span [ngClass]="{'activeStatus':status}">InActive</span>/<span
                         [ngClass]="{'activeStatus':!status}">Active</span></label>
             </div>
             <nb-toggle name="status" [(ngModel)]="status" #statusRef="ngModel" required></nb-toggle>
         </div>
+            <div class="col-2">
+                <div>
+                    <label><span [ngClass]="{'activeStatus':format}">Day</span>/<span
+                            [ngClass]="{'activeStatus':!format}">Week</span></label>
+                </div>
+                <nb-toggle name="format" [(ngModel)]="format" #formatRef="ngModel" required></nb-toggle>
+            </div>
     </div>
 
     <div class="row ">

@@ -34,16 +34,22 @@ export class ShowEntryComponent implements OnInit {
   id: any;
   language: any;
   eventName: string;
+  countryName: string;
+  favCount: string;
   imgurl: any;
   logourl: any;
+  frameurl: any;
   type: any;
   file1: any;
   files: File[] = [];
   file2: any;
+  file3: any;
   files1: File[] = [];
+  files2: File[] = [];
   lanDropdown: any;
   changedImage: boolean = false;
   status: boolean = false;
+  format: boolean = false;
   spinner: boolean = false;
   enddaytime1: any;
   startdaytime1: any;
@@ -53,6 +59,7 @@ export class ShowEntryComponent implements OnInit {
   nativeRules: any;
   nativeDescription: any;
   changedImage1: boolean = false;
+  changedImage2: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private http: DataserviceService,
@@ -84,6 +91,14 @@ export class ShowEntryComponent implements OnInit {
     this.file2 = event.addedFiles[0];
     console.log(this.file2);
   }
+  onFrameChange(event) {
+    console.log(event);
+    this.files2.push(...event.addedFiles);
+
+    this.changedImage2 = true;
+    this.file3 = event.addedFiles[0];
+    console.log(this.file3);
+  }
 
   SelectionItem(event) {
     console.log(event);
@@ -102,6 +117,9 @@ export class ShowEntryComponent implements OnInit {
     form.value.startdaytime = moment(form.value.startdaytime).format(
       "ddd MMM DD YYYY hh:mm:ss"
     );
+    form.value.format === true
+    ? (form.value.format = "week")
+    : (form.value.format = "day");
     form.value.status === true
       ? (form.value.status = "active")
       : (form.value.status = "inactive");
@@ -109,14 +127,18 @@ export class ShowEntryComponent implements OnInit {
     if (this.type == "update2") {
       let body: any = {
         name: form.value.eventName,
+        country: form.value.countryName,
+        favCount: form.value.favCount,
         language: [this.defaultLanguage, form.value.lanDropdown],
         rules: form.value.rules,
         description: form.value.description,
         startAt: form.value.startdaytime,
         endAt: form.value.enddaytime,
         status: form.value.status,
+        format: form.value.format,
         imageChanged: this.changedImage,
         logoChanged: this.changedImage1,
+        frameChanged: this.changedImage2,
         translation: {
           name: form.value.nativeName,
           rules: form.value.nativeRules,
@@ -143,6 +165,7 @@ export class ShowEntryComponent implements OnInit {
         );
       this.changedImage = false;
       this.changedImage1 = false;
+      this.changedImage2 = false;
     }
   }
 
@@ -152,6 +175,8 @@ export class ShowEntryComponent implements OnInit {
       let data1 = data.json();
       console.log(data1.data);
       this.eventName = data1.data.name;
+      this.countryName = data1.data.country;
+      this.favCount = data1.data.favCount;
       this.startdaytime = data1.data.startedDate;
       this.enddaytime = data1.data.endDate;
       this.rules = data1.data.rules;
@@ -160,9 +185,11 @@ export class ShowEntryComponent implements OnInit {
       this.nativeRules = data1.data.translation.rules;
       this.nativeDescription = data1.data.translation.description;
       this.status = data1.data.status == "active" ? true : false;
+      this.format = data1.data.format == "week" ? true : false;
       this.imgurl = this.http.imageip() + data1.data.banner;
       this.lanDropdown = data1.data.language[1];
       this.logourl = this.http.imageip() + data1.data.logo;
+      this.frameurl = this.http.imageip() + data1.data.frame;
     });
   }
 
