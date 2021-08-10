@@ -222,6 +222,7 @@
             <mat-card-header>
                 <span class="flaticon-user"></span>
                 Current Contestants
+
             </mat-card-header>
             <mat-card-content class="contestants-list" [style.overflow]="'auto'" [style.height.px]="'250'">
                 <li class="list-1" *ngFor="let user of contestantsList;">
@@ -235,16 +236,15 @@
         </mat-card>
     </div>
 </div>
-<form #show="ngForm" (ngSubmit)="showform(show)">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 <div class="row">
     <div class="mt-2">
     <div class="col-sm-12">
         <span>
-            <form action="/action_page.php">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
             <label>Edit Welcome Message</label>
             <input type="text" name="welcomeMsg" [(ngModel)]="welcomeMsg" #welcomeMsgRef="ngModel" nbInput
-            id="welcomeMsgField" required
-            >
+            id="welcomeMsgField" required >
             <input nbButton type="submit" value="Submit">
             </form>
           </span>

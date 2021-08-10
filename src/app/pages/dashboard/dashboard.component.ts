@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   tasklist: any;
   contestantsList: any;
   titledata: any;
-  welcomeMsg: string;
+  welcomeMsg: any;
   images: any[] = [];
   image = "images";
   formdata = new FormData();
@@ -31,16 +31,10 @@ export class DashboardComponent implements OnInit {
     //this.eventList();
   }
 
-  showform(form: NgForm) {
-    console.log(form.value);
-      let body: any = {
-        name: form.value.welcomeMsg,
-      };
-      console.log(body);
-      let apibody = JSON.stringify(body);
-      this.formdata.append("welcomeMSg", apibody);
+  onSubmit(f: NgForm) {
+    console.log(this.welcomeMsg);
       this.http
-        .put("/api/v1/welcome/update?id=61014ce5926661823ec59481", this.formdata)
+        .put("/api/v1/welcome/update?uid=61014ce5926661823ec59481", {message: this.welcomeMsg})
         .subscribe(
           (data) => {
             console.log(data);
@@ -49,6 +43,7 @@ export class DashboardComponent implements OnInit {
             console.log(err);
           }
         );
+        alert("Welcome Message Updated!!");
   }
 
   
@@ -86,7 +81,9 @@ export class DashboardComponent implements OnInit {
 
     this.http.get("/api/v1/welcome").subscribe((data)=> {
       let data1 = data.json();
-      this.welcomeMsg = data1.data.message;
+      //console.log(data1.messageList[0].message);
+      this.welcomeMsg = data1.messageList[0].message;
+      console.log(this.welcomeMsg);
     })
 
     //top 3 players
@@ -98,12 +95,6 @@ export class DashboardComponent implements OnInit {
       console.log(this.top1players);
       this.top3players = data1.rankingList;
       console.log(this.top3players);
-    });
-
-    this.http.get("/api/v1/wwelcome").subscribe((data) => {
-      let data1 = data.json();
-      console.log(this.top1players);
-      this.welcomeMsg = data1.welcomeMsg;
     });
 
     this.http.get("/api/v1/top10/ranking").subscribe((data) => {
