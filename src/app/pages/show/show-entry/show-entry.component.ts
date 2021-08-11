@@ -150,6 +150,7 @@ export class ShowEntryComponent implements OnInit {
       this.formdata.append("eventInfo", apibody);
       this.formdata.append("image", this.file1);
       this.formdata.append("logo", this.file2);
+      this.formdata.append("frame",this.file3);
       this.http
         .put("/api/v1/event/update?id=" + this.id, this.formdata)
         .subscribe(
