@@ -105,15 +105,26 @@ export class EntryAdvertismentComponent implements OnInit {
         console.log(this.advertismentdata);
         this.name = this.advertismentdata.brandname;
         this.page = this.advertismentdata.page;
-
+        let imgArray = this.safeJSONParse(this.advertismentdata.images);
         // this.adcount = this.advertismentdata.adcount;
         this.adcount = "1";
         this.position = this.advertismentdata.position;
         this.link = this.advertismentdata.link;
 
            this.status = this.advertismentdata.status == "active" ? true : false;
-        this.imgurl = this.http.ip() +"/images" +this.advertismentdata.images;
+        // this.imgurl = this.http.ip() +"/images" +this.advertismentdata.images;
         this.files = [];
+
+        this.imgurl = [];
+        // tslint:disable-next-line: typeof-compare
+        console.log(typeof imgArray);
+        if (typeof imgArray === 'object') {
+          for (let img of imgArray) {
+            this.imgurl.push(this.http.ip() + '/images' + img);
+          }
+        } else {
+          this.imgurl = imgArray;
+        }
 
         this.selectedItem=parseInt(this.position);
         this.selectedPageItem=parseInt(this.page);
@@ -155,7 +166,10 @@ export class EntryAdvertismentComponent implements OnInit {
       console.log(body);
       let apibody = JSON.stringify(body);
       this.formdata.append("advertismentInfo", apibody);
-      this.formdata.append("image", this.file1);
+      // this.formdata.append("image", this.file1);
+      for  (let i =  0; i <  this.files.length; i++)  {
+        this.formdata.append("image[]",  this.files[i]);
+      }
       this.http.post("/api/v1/advertisment", this.formdata).subscribe(
         (data) => {
           console.log(data), (this.spinner = false);
@@ -187,7 +201,10 @@ export class EntryAdvertismentComponent implements OnInit {
       let apibody = JSON.stringify(data1);
       console.log(data1);
       this.formdata.append("advertismentInfo", apibody);
-      this.formdata.append("image", this.file1);
+      // this.formdata.append("image", this.file1);
+      for  (let i =  0; i <  this.files.length; i++)  {
+        this.formdata.append('image[]',  this.files[i]);
+      }
       this.http
         .put("/api/v1/advertisment?id=" + this.id1, this.formdata)
         .subscribe((data) => {
@@ -222,5 +239,21 @@ export class EntryAdvertismentComponent implements OnInit {
     console.log("Event_Id", event);
      this.page = event
 
+    }
+
+    safeJSONParse(data) {
+      if (data) {
+        if (Array.isArray(data)) {
+          return data;
+        } else {
+          try {
+            return JSON.parse(data);
+          } catch (e) {
+            return [data];
+          }
+        }
+      } else {
+        return [];
+      }
     }
 }
