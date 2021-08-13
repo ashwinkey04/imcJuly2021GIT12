@@ -121,6 +121,11 @@ export class ListAdvertismentComponent implements OnInit {
         let data1 = data.json();
         console.log(data);
         this.advertismentsdata = data1.eventList;
+        for(let index in this.advertismentsdata) {
+          if (this.advertismentsdata[index].images) {
+            this.advertismentsdata[index].images = this.safeJSONParse(this.advertismentsdata[index].images);
+          }
+        }
         console.log(this.advertismentsdata);
         this.dataSource = new MatTableDataSource<PeriodicElement>(
           this.advertismentsdata
@@ -160,5 +165,20 @@ export class ListAdvertismentComponent implements OnInit {
 
   ngAfterViewInit() {}
 
+  safeJSONParse(data) {
+    if (data) {
+      if (Array.isArray(data)) {
+        return data;
+      } else {
+        try {
+          return JSON.parse(data);
+        } catch (e) {
+          return [data];
+        }
+      }
+    } else {
+      return [];
+    }
+  }
 
 }
