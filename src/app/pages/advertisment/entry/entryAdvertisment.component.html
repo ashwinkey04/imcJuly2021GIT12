@@ -140,14 +140,14 @@
                 </div> -->
                 <div class="img-edit">
 
-                    <ngx-dropzone (change)="onChange($event)" style="border: none;" [multiple]="false"
+                    <ngx-dropzone (change)="onChange($event)" style="border: none;" [multiple]="true"
                         accept="image/jpeg,image/jpg,image/png,image/gif">
                         <ngx-dropzone-label *ngIf="files.length==0 && !(imgurl)">Drop it, here!</ngx-dropzone-label>
                         <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" id="image-preview"
                             *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove($event)">
                         </ngx-dropzone-image-preview>
-                        <div style="padding: 0px 13px;">
-                            <img *ngIf="files.length==0 && (imgurl)" [src]="this.imgurl" alt=""
+                        <div style="padding: 0px 13px;" *ngFor="let img of imgurl">
+                            <img *ngIf="files.length==0 && (imgurl)" [src]="img" alt=""
                                 style="width: 100% !important;" class="img-responsive" />
                         </div>
                     </ngx-dropzone>
