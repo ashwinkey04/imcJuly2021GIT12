@@ -1,4 +1,4 @@
-<span class="flaticon-dashboard6"></span><span class="title">Dashboard </span> 
+<span class="flaticon-dashboard6"></span><span class="title">Dashboard </span>
 
 <div class="row">
     <div class="col .col-sm-4 .col-md-4 .col-lg-4 .col-xl-4">
@@ -239,13 +239,13 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 <div class="row">
     <div class="mt-2">
-    <div class="col-sm-12">
+    <div class="col-sm-12 md-6">
         <span>
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-            <label>Edit Welcome Message</label>
-            <input type="text" name="welcomeMsg" [(ngModel)]="welcomeMsg" #welcomeMsgRef="ngModel" nbInput
-            id="welcomeMsgField" required >
-            <input nbButton type="submit" value="Submit">
+            <label class="label text-left">Edit Welcome Message</label><br/>
+            <textarea style="background-color: #ffffff; border: 0.5px solid #e1e1e1; height:100px;" type="text" name="welcomeMsg" [(ngModel)]="welcomeMsg" #welcomeMsgRef="ngModel" nbInput
+            id="welcomeMsgField" required ></textarea>
+            <input nbButton style = "margin-left: 20px; margin-bottom: 5px; color: white; background-color: #1d3c7f; " type="submit" value="Submit">
             </form>
           </span>
     </div>

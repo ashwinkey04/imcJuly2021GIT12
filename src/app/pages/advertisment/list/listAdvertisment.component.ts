@@ -73,7 +73,7 @@ export class ListAdvertismentComponent implements OnInit {
     { key: 1, name: "Home - Center Left" },
     { key: 2, name: "Home - Bottom" },
     { key: 3, name: "Home - Top Right" },
-    { key: 4, name: "Dashboard - Top Right -1" },
+    { key: 4, name: "Carousel Dashboard" },
     { key: 5, name: "Dashboard - Top Right -2" },
     { key: 6, name: "Dashboard - Top Right -3" },
     { key: 7, name: "Dashboard - Bottom" },

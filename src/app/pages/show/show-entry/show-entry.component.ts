@@ -33,6 +33,7 @@ export class ShowEntryComponent implements OnInit {
   defaultLanguage: string = "English";
   id: any;
   language: any;
+  countryD: any;
   eventName: string;
   countryName: string;
   favCount: string;
@@ -47,6 +48,7 @@ export class ShowEntryComponent implements OnInit {
   files1: File[] = [];
   files2: File[] = [];
   lanDropdown: any;
+  couDropdown: any;
   changedImage: boolean = false;
   status: boolean = false;
   format: boolean = false;
@@ -103,6 +105,9 @@ export class ShowEntryComponent implements OnInit {
   SelectionItem(event) {
     console.log(event);
   }
+  SelectionCou(event) {
+    console.log(event);
+  }
 
   onRemove(event) {
     console.log(event);
@@ -127,9 +132,10 @@ export class ShowEntryComponent implements OnInit {
     if (this.type == "update2") {
       let body: any = {
         name: form.value.eventName,
-        country: form.value.countryName,
+        country: form.value.couDropdown,
         favCount: form.value.favCount,
         language: [this.defaultLanguage, form.value.lanDropdown],
+        countryD: form.value.couDropdown,
         rules: form.value.rules,
         description: form.value.description,
         startAt: form.value.startdaytime,
@@ -176,7 +182,7 @@ export class ShowEntryComponent implements OnInit {
       let data1 = data.json();
       console.log(data1.data);
       this.eventName = data1.data.name;
-      this.countryName = data1.data.country;
+      this.couDropdown = data1.data.country;
       this.favCount = data1.data.favCount;
       this.startdaytime = data1.data.startedDate;
       this.enddaytime = data1.data.endDate;
@@ -189,6 +195,7 @@ export class ShowEntryComponent implements OnInit {
       this.format = data1.data.format == "week" ? true : false;
       this.imgurl = this.http.imageip() + data1.data.banner;
       this.lanDropdown = data1.data.language[1];
+      //this.couDropdown = data1.data.countryD;
       this.logourl = this.http.imageip() + data1.data.logo;
       this.frameurl = this.http.imageip() + data1.data.frame;
     });
@@ -198,6 +205,10 @@ export class ShowEntryComponent implements OnInit {
     this.http.get("/api/v1/language/withoutEnglish").subscribe((data) => {
       let data1 = data.json();
       this.language = data1.languageList;
+    });
+    this.http.get("/api/v1/countries").subscribe((data) => {
+      let data2 = data.json();
+      this.countryD = data2.countriesList;
     });
   }
 

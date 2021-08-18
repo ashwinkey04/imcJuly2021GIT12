@@ -29,8 +29,7 @@
 
             </div>
             <div class="row">
-                <div class="col">
-                        <!-- <nb-toggle></nb-toggle> -->
+                <!-- <div class="col">
                         <div class="mt-3">
                             <div class="form-group mt-1">
                                 <label for="CountryField" class="label text-left">Country <span
@@ -47,7 +46,17 @@
                             </ng-container>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+                    <div class="col couDropdown">
+                      <div>
+                          <label>Country<span class="caption status-danger">*</span></label>
+                      </div>
+                      <nb-select style="background-color: #ffffff !important;" placeholder="Select Country" fullWidth
+                          (selectedChange)="SelectionCou($event)" name="couDropdown" [(ngModel)]="couDropdown">
+                          <nb-option *ngFor="let item of countryD" [value]="item.country">{{item.country}}</nb-option>
+                      </nb-select>
+                  </div>
+
                     <div class="col">
                         <!-- <nb-toggle></nb-toggle> -->
                         <div class="mt-3">
@@ -142,7 +151,7 @@
                 </mat-error>
             </mat-form-field>
         </div>
-        
+
 
         <!-- <div classs="col-2">
         </div> -->
