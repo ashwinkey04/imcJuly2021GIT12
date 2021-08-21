@@ -38,6 +38,23 @@
         [attr.aria-invalid]="emailRef.invalid && emailRef.touched ? true : null">
     </div>
 </div>
+<div class="row">
+  <div class="col">
+      <div>
+        <label>Select Week For Reward<span class="caption status-danger">*</span></label>
+      </div>
+      <nb-select name="week" [(ngModel)]="week" #weekRef="ngModel" fullWidth required>
+        <nb-option *ngFor="let item of weeksList" [value]="item">
+          {{item | titlecase}}
+        </nb-option>
+      </nb-select>
+      <ng-container *ngIf="weekRef.invalid && (weekRef.dirty ||TaskForm.submitted)">
+        <p class="caption status-danger">
+          Please select week.
+        </p>
+      </ng-container>
+  </div>
+</div>
 <div class="row" *ngIf="PlayerInfo.city != null">
     <div class="col">
         <span>City</span>

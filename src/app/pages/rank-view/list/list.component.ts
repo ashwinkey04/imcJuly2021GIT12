@@ -91,6 +91,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Moment } from "moment/moment.d";
 import { DataserviceService } from "../../../dataservice.service";
+import { RouterModule } from '@angular/router';
 
 export interface PeriodicElement {
   Rank: number;
@@ -115,10 +116,12 @@ export class ListComponent implements OnInit {
   isLoading: boolean = true;
   selected: { startDate: Moment; endDate: Moment };
   rankingList: any;
+  eventId: any;
   ngOnInit(): void {
     // this.get();
     // this.getRankList();
     this.getRankListgrp();
+    this.getData();
   }
 
   displayedColumns: string[] = [
@@ -154,6 +157,11 @@ export class ListComponent implements OnInit {
       this.rank = 'all'
     });
   }
+
+  getData() {
+    let eventId = localStorage.getItem("Event_Id");
+    console.log("hi"+eventId);
+   }
 
   getRankListgrp() {
     this.http.get("/api/v1/points/getRankGrp").subscribe((data) => {
