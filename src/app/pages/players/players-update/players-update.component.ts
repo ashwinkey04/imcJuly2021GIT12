@@ -61,7 +61,6 @@ export class PlayersUpdateComponent implements OnInit {
     });
 
     this.eventId = localStorage.getItem("Event_Id");
-    console.log("hello"+this.eventId);
 
     this.http.get("/api/v1/user/admin/week?uid="+this.id +"&event=" + this.eventId).subscribe((data) => {
       var list = data.json();
@@ -85,16 +84,22 @@ export class PlayersUpdateComponent implements OnInit {
     let status =  {
       "name":form.value.name,
       "email":form.value.email,
-      "userName":form.value.username
+      "userName":form.value.username,
+      "city": this.PlayerInfo.city,
+      "country": this.PlayerInfo.country,
+      "displayCountries": this.PlayerInfo.displayCountries,
+      "dob": this.PlayerInfo.dob,
+      "mobile": this.PlayerInfo.mobile,
+      "pincode": this.PlayerInfo.pincode,
+      "state": this.PlayerInfo.state,
+      "gender": this.PlayerInfo.gender || null,
   }
     let week = {
       "uid": this.id,
       "event": this.eventId,
       "week": form.value.week
     }
-    console.log("testing"+JSON.stringify(week));
 
-    console.log(JSON.stringify(status));
      this.http
       .put("/api/v1/user/profile?uid=" + this.id, status)
       .subscribe((data) => {
