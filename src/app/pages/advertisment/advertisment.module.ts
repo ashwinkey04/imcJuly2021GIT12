@@ -28,6 +28,11 @@ import {
   NbToastrModule,
   NbSpinnerModule,
 } from "@nebular/theme";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatTimepickerModule,
+  NgxMatNativeDateModule,
+} from "@angular-material-components/datetime-picker";
 import { FormsModule } from "@angular/forms";
 
 import { NbMomentDateModule, NbMomentDateService } from "@nebular/moment";
@@ -36,7 +41,10 @@ import { PDFExportModule } from "@progress/kendo-angular-pdf-export";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ThemeModule } from "app/@theme/theme.module";
-
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 @NgModule({
   declarations: [ ListAdvertismentComponent, EntryAdvertismentComponent,AdvertismentComponent],
   imports: [
@@ -69,6 +77,14 @@ import { ThemeModule } from "app/@theme/theme.module";
     MatProgressSpinnerModule,
     MatPaginatorModule,
     ThemeModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    NgxMatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
 })
 export class AdvertismentModule {}

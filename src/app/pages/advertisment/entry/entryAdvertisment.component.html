@@ -79,6 +79,48 @@
                                 </p>
                             </ng-container>
                         </div> -->
+                        <!-- <div class="row">
+                          <div class="col-3" style="margin-top: 4px;">
+                            <label>Start Date <span class="caption status-danger">*</span></label>
+                            <mat-form-field style="width: 100%;" floatLabel=never>
+                              <input matInput [ngxMatDatetimePicker]="picker" placeholder="Start date" [min]="minDate" [max]="maxDate"
+                                (dateChange)="StartDate($event)" fullWidth name="startdaytime" [(ngModel)]="startdaytime" required ngModel
+                                #date1="ngModel" >
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                                [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+                                [color]="color" [enableMeridian]="enableMeridian" format="dd-MM-yyyy">
+                              </ngx-mat-datetime-picker>
+                              <mat-error *ngIf="date1.invalid && (date1.dirty ||UpdateForm.submitted)">
+                                select start date
+                              </mat-error>
+                            </mat-form-field>
+
+                          </div>
+                          <div class="col-3" style="margin-top: 4px;">
+                            <label>End Date <span class="caption status-danger">*</span></label>
+                            <mat-form-field style="width: 100%;" floatLabel=never>
+                              <input matInput [ngxMatDatetimePicker]="picker1" placeholder="End date" [min]="startdaytime" [max]="maxDate"
+                                (dateChange)="EndDate($event)" fullWidth name="enddaytime" [(ngModel)]="enddaytime" required ngModel
+                                #date2="ngModel">
+                              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                              <ngx-mat-datetime-picker #picker1 [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                                [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+                                [color]="color" [enableMeridian]="enableMeridian" format="dd-MM-yyyy">
+                              </ngx-mat-datetime-picker>
+                              <mat-error *ngIf="date2.invalid && (date2.dirty ||UpdateForm.submitted)">
+                                Select end date
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div> -->
+                        <div class="col-2">
+                          <div>
+                              <label><span [ngClass]="{'activeStatus':evStatus}">Event Ad</span>/<span
+                                      [ngClass]="{'activeStatus':!evStatus}"></span></label>
+                          </div>
+                          <nb-toggle name="evStatus" [(ngModel)]="evStatus" #statusRef="ngModel" required></nb-toggle>
+                      </div>
 
                         <div class="form-group mt-1">
                             <label for="exampleInputEmail1" class="label text-left">Url link <span

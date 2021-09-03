@@ -6,6 +6,8 @@ import { DataserviceService } from "../../../dataservice.service";
 import { NbToastrService } from "@nebular/theme";
 // import {map} from 'rxjs/add/operator/map';
 // import { map } from 'rxjs/internal/operators/map';
+import * as moment from "moment";
+import { ThemePalette } from "@angular/material/core";
 
 @Component({
   selector: "ngx-entry",
@@ -29,11 +31,32 @@ export class EntryAdvertismentComponent implements OnInit {
   pagename:any = null;
   positionname:any = null;
   id1: any;
+  startdaytime: any;
+  enddaytime: any;
+  startdaytime1: any;
+  enddaytime1: any;
+  disabled: false;
+  showSpinners = true;
+  showSeconds = false;
+  touchUi = false;
+  enableMeridian = true;
+  MinCount: number;
+  MaxCount: number;
+  maxDate: moment.Moment;
+  minDate: moment.Moment;
+  stepHour = 1;
+  stepMinute = 1;
+  stepSecond = 1;
+  color: ThemePalette = "primary";
+  stepHours = [1, 2, 3, 4, 5];
+  stepMinutes = [1, 5, 10, 15, 20, 25];
+  stepSeconds = [1, 5, 10, 15, 20, 25];
   file1: any;
   index: number = 0;
   changedImage: boolean = false;
   spinner: boolean = false;
   nativelanguage: string;
+  evStatus: boolean = false;
   viewposition: any[] = [
 
     { key: 100, name: "Please select the Position for the advertisment" },
@@ -105,6 +128,7 @@ export class EntryAdvertismentComponent implements OnInit {
         console.log(this.advertismentdata);
         this.name = this.advertismentdata.brandname;
         this.page = this.advertismentdata.page;
+        this.evStatus = this.advertismentdata.evStatus== "active" ? true : false;
         let imgArray = this.safeJSONParse(this.advertismentdata.images);
         // this.adcount = this.advertismentdata.adcount;
         this.adcount = "1";
@@ -146,14 +170,20 @@ export class EntryAdvertismentComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
+
   Update(form: NgForm) {
     this.spinner = true;
-    form.value.status === true
+    form.value.evStatus === true
+      ? (form.value.evStatus = "active")
+      : (form.value.evStatus = "inactive");
+      form.value.status === true
       ? (form.value.status = "active")
       : (form.value.status = "inactive");
 
     //create api
     if (this.type == "create") {
+      let l = localStorage.getItem("Event_Id");
+      console.log("eventid"+l)
       let body: any = {
         name: form.value.name,
         position: "0",
@@ -161,7 +191,9 @@ export class EntryAdvertismentComponent implements OnInit {
         // adcount: form.value.adcount,
         adcount:"1",
         link: form.value.link,
-        status: form.value.status
+        status: form.value.status,
+        evStatus: form.value.evStatus,
+        eventId: l,
       };
       console.log(body);
       let apibody = JSON.stringify(body);
@@ -187,17 +219,22 @@ export class EntryAdvertismentComponent implements OnInit {
       //Update Api
     } else if (this.type == "update") {
       console.log(this.changedImage);
+      let l = localStorage.getItem("Event_Id");
+      console.log("eventid"+l)
       let data1: any = {
         name: form.value.name,
         position: this.position,
+        status: form.value.status,
         page: this.page,
         // adcount: form.value.adcount,
         adcount:"1",
         link: form.value.link,
-        status: form.value.status,
+        evStatus: form.value.evStatus,
+        eventId: form.value.evStatus == "active" ? l : 'null',
         imageChanged: this.changedImage,
 
       };
+
       let apibody = JSON.stringify(data1);
       console.log(data1);
       this.formdata.append("advertismentInfo", apibody);
@@ -240,6 +277,15 @@ export class EntryAdvertismentComponent implements OnInit {
      this.page = event
 
     }
+    StartDate(event) {
+      this.startdaytime1 = moment(event.value).format("ddd MMM DD YYYY HH:mm:ss");
+      console.log(event.value);
+    }
+    EndDate(event) {
+      this.enddaytime1 = moment(event.value).format("ddd MMM DD YYYY HH:mm:ss");
+      console.log(this.enddaytime);
+    }
+
 
     safeJSONParse(data) {
       if (data) {
@@ -257,3 +303,4 @@ export class EntryAdvertismentComponent implements OnInit {
       }
     }
 }
+
